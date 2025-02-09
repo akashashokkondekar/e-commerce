@@ -5,11 +5,16 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import Products from './pages/Products';
+import MiniBasket from './components/MiniBasket';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Products/>
+  },
+  {
+    path: '/basket',
+    element: <MiniBasket/>
   }
 ]);
 

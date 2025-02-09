@@ -1,0 +1,56 @@
+.miniBasket {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  z-index: 100;
+}
+
+.miniBasketHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.miniBasketItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.itemDetails {
+  flex: 1;
+  margin-left: 0.5rem;
+}
+
+.itemTitle {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.itemPrice {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.itemQuantity {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.totalPrice {
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-align: right;
+  margin-top: 1rem;
+}

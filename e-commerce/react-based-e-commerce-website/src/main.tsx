@@ -10,6 +10,7 @@ import client from './ApolloClient';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import MiniBasket from './components/MiniBasket';
+import Checkout from './pages/Checkout';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
     path: '/basket',
     element: <MiniBasket />
   },
+  {
+    path: '/checkout',
+    element: <Checkout />
+  }
 
 ]);
 

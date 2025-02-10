@@ -42,7 +42,7 @@ const MiniBasket = () => {
       )}
       <div className={styles.footer}>
         <span>Total: ${totalPrice.toFixed(2)}</span>
-        <Link to={'/'}>
+        <Link to={'/checkout'}>
           <button className={styles.checkoutBtn}>Checkout</button>
         </Link>
       </div>

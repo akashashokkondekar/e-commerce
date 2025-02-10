@@ -1,9 +1,9 @@
-.miniBasket {
+/* .miniBasket {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 1rem;
-  width: 100%;
+  width: 300px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   position: absolute;
   top: 60px;
@@ -35,22 +35,118 @@
 .itemTitle {
   font-size: 1rem;
   font-weight: 600;
+  color: #000;
 }
 
 .itemPrice {
   font-size: 0.9rem;
-  color: #666;
+  color: #000;
 }
 
 .itemQuantity {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  color: #000;
 }
 
 .totalPrice {
   font-size: 1.1rem;
   font-weight: bold;
   text-align: right;
+  color: #000;
   margin-top: 1rem;
+}
+
+.removeButton {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.removeButton:hover {
+  background-color: #d9363e;
+} */
+
+
+.container {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 300px;
+  background-color: #fff;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: blueviolet;
+}
+
+.empty {
+  text-align: center;
+  color: #888;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.name {
+  flex: 1;
+  font-weight: bold;
+  color: #000;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #000;
+}
+
+.price {
+  font-weight: bold;
+  color: #000;
+}
+
+.removeBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ff4d4f;
+}
+
+.footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #1e90ff;
+}
+
+.checkoutBtn {
+  background-color: #1e90ff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
 }

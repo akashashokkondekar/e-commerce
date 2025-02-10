@@ -1,46 +1,53 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from './../app/store';
+import { RootState } from '../app/store';
 import { removeItem, updateQuantity } from '../features/basket/basketSlice';
+import { X, Plus, Minus } from 'lucide-react';
+import { Link } from 'react-router-dom'
 import styles from './../css/MiniBasket.module.css';
 
 const MiniBasket = () => {
-
   const basketItems = useSelector((state: RootState) => state.basket.items);
   const dispatch = useDispatch();
 
-  const totalPrice = basketItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const totalPrice = basketItems.reduce((acc, item) => acc + item.variants.edges[0].node.price.amount * item.quantity, 0);
 
   return (
-    <div className={styles.miniBasket}>
-      <div className={styles.miniBasketHeader}>
-        <span>Mini Basket</span>
-      </div>
 
+    <div className={styles.container}>
+      {
+        basketItems.length > 0 && <h2 className={styles.header}>Your Basket</h2>
+      }
       {basketItems.length === 0 ? (
-        <p>Your basket is empty.</p>
+        <p className={styles.empty}>Your basket is empty.</p>
       ) : (
-        basketItems.map((item) => (
-          <div key={item.id} className={styles.miniBasketItem}>
-            <div className={styles.itemDetails}>
-              <span className={styles.itemTitle}>{item.title}</span>
-              <div className={styles.itemPrice}>${item.price}</div>
-            </div>
 
-            <div className={styles.itemQuantity}>
-              <button onClick={() => dispatch(updateQuantity({ id: item.id, quantity: item.quantity - 1 }))}>-</button>
-              <span>{item.quantity}</span>
-              <button onClick={() => dispatch(updateQuantity({ id: item.id, quantity: item.quantity + 1 }))}>+</button>
+        basketItems.map((currProductObj, index) => (
+          <div key={currProductObj.id} className={styles.item}>
+            <span className={styles.name}>{`${(index + 1)}. ${currProductObj.title}`}</span>
+            <div className={styles.controls}>
+              <button onClick={() => dispatch(updateQuantity({ id: currProductObj.id, quantity: currProductObj.quantity - 1 }))}>
+                <Minus size={16} />
+              </button>
+              <span>{currProductObj.quantity}</span>
+              <button onClick={() => dispatch(updateQuantity({ id: currProductObj.id, quantity: currProductObj.quantity + 1 }))}>
+                <Plus size={16} />
+              </button>
             </div>
-
-            <button className={styles.removeButton} onClick={() => dispatch(removeItem(item.id))}>
-              Remove
+            <span className={styles.price}> ${(currProductObj.variants.edges[0].node.price.amount * currProductObj.quantity).toFixed(2)}</span>
+            <button onClick={() => dispatch(removeItem(currProductObj.id))} className={styles.removeBtn}>
+              <X size={16} />
             </button>
           </div>
         ))
       )}
-
-      <div className={styles.totalPrice}>Total: ${totalPrice}</div>
+      <div className={styles.footer}>
+        <span>Total: ${totalPrice.toFixed(2)}</span>
+        <Link to={'/'}>
+          <button className={styles.checkoutBtn}>Checkout</button>
+        </Link>
+      </div>
     </div>
+
   );
 };
 

@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 import Products from './pages/Products';
 import MiniBasket from './components/MiniBasket';
+import AboutUs from './pages/AboutUs';
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: '/basket',
     element: <MiniBasket/>
+  },
+  {
+    path: '/aboutus',
+    element: <AboutUs/>
   }
 ]);
 

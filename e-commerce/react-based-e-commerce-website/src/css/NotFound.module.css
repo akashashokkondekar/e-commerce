@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  background-color: #f8f9fa;
+}
+
+.title {
+  font-size: 6rem;
+  font-weight: bold;
+  color: #ff4d4f;
+}
+
+.message {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  color: #333;
+}
+
+.link {
+  margin-top: 1.5rem;
+  font-size: 1.25rem;
+  color: #1e90ff;
+  text-decoration: none;
+  border: 2px solid #1e90ff;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.link:hover {
+  background-color: #1e90ff;
+  color: #fff;
+}

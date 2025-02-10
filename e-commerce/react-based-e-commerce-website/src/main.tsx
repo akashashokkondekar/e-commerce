@@ -7,6 +7,7 @@ import { store } from './app/store';
 import Products from './pages/Products';
 import MiniBasket from './components/MiniBasket';
 import AboutUs from './pages/AboutUs';
+import NotFound from './pages/NotFound';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: '/aboutus',
     element: <AboutUs/>
+  },
+  {
+    path: '*',
+    element: <NotFound/>
   }
 ]);
 

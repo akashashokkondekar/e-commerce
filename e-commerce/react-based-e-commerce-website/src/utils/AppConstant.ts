@@ -34,3 +34,4 @@ export const IncreaseProductQuntityOperationText = "IncreaseProductQuntity";
 export const DecreaseProductQuntityOperationText = "DescreaseProductQuntity";
 export const RemoveProductFromCartOperationText = "RemoveProductFromCart";
 export const CheckoutBasketOperationText = "CheckoutBasket";
+

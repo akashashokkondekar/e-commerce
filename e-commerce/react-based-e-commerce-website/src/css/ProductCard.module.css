@@ -49,7 +49,7 @@
   color: white;
   border: none;
   border-radius: 0.5rem;
-  cursor: default;
+  cursor: pointer;
 }
 
 .opacity-point-5 {

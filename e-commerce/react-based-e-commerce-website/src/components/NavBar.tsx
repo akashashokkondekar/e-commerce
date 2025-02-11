@@ -11,6 +11,7 @@ import {WebsiteNameText, OptionOneText, OptionTwoText, OptionThreeText} from '..
 const NavBar = () => {
   const [isBasketOpen, setBasketOpen] = useState(false);
   const basketItems = useSelector((state: RootState) => state.basket.items);
+  console.log(JSON.stringify(basketItems));
 
   return (
     <nav className={styles.navbar}>

@@ -5,7 +5,7 @@ import { AboutUsFirstSectionLabelDesc, AboutUsFirstSectionLabelText, AboutUsSeco
 const AboutUs = () => {
   return (
     <div>
-      <NavBar></NavBar>
+      <NavBar/>
     <div className={styles.container}>
       <h1 className={styles.title}>{OptionThreeText}</h1>
       

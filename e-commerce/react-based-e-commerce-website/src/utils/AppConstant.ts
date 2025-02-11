@@ -20,6 +20,7 @@ export const ThirdSlideIntroLine = "Shopping Made Simple, Just for You.";
 export const FourthSlideIntroLine = "Find Your Perfect Match with Us.";
 export const FifthSlideIntroLine = "Discover Deals You Can't Resist!";
 export const SixthSlideIntroLine = "Elevate Your Shopping Experience 🌟";
+export const ConfettiEffectTimeOutValue = 3000; // In MS
 
 // ProductCard.tsx
 export const AddToBasketButtonConditionText = "Add to Basket";

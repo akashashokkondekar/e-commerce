@@ -1,5 +1,7 @@
 import styles from "./../css/Confetti.module.css";
-export default function Confetti() {
+
+const Confetti: React.FC = () => {
+  
   return (
 
     <div id="confetti" className={styles.confetti}>
@@ -20,3 +22,4 @@ export default function Confetti() {
 
   );
 }
+export default Confetti;

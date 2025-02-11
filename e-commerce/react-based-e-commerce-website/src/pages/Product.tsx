@@ -1,6 +1,3 @@
-import { useKeenSlider } from "keen-slider/react";
-import "keen-slider/keen-slider.min.css";
-import "./../index.css";
 import React, { Suspense } from 'react';
 const ProductCard = React.lazy(() => import("../components/ProductCard"));
 import styles from "./../css/Product.module.css";
@@ -10,10 +7,11 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';
 import { isEmpty, isNull } from "lodash";
 import ProductCardSkeleton from "../components/ProductCardSkeleton";
-import { FifthSlideIntroLine, FirstSlideIntroLine, FourthSlideIntroLine, SecondSlideIntroLine, SixthSlideIntroLine, ThirdSlideIntroLine } from "../utils/AppConstant";
-import Confetti from "../components/confetti";
+import { ConfettiEffectTimeOutValue } from "../utils/AppConstant";
+import Confetti from "../components/Confetti";
 import $ from "jquery";
 import { useEffect } from "react";
+import BannerSlider from "../components/BannerSlider";
 
 let timeOutInstance: any = null;
 
@@ -76,7 +74,7 @@ const Get_Product_List = gql`
 `;
 
 const Product: React.FC = () => {
-  
+
   const { loading, error, data } = useQuery<ProductListData>(Get_Product_List);
   const basketItems = useSelector((state: RootState) => state.basket.items);
 
@@ -85,68 +83,25 @@ const Product: React.FC = () => {
   }, []);
 
   const handleConfettiAnimation = () => {
-    
+
     if (!isNull(timeOutInstance) && !isEmpty(timeOutInstance)) {
       clearTimeout(timeOutInstance);
     }
     $("#confetti").fadeIn(200);
     timeOutInstance = setTimeout(() => {
-      $("#confetti").fadeOut(200);
+      $("#confetti").fadeOut(500);
       timeOutInstance = null;
-    }, 3000);
-    
+    }, ConfettiEffectTimeOutValue);
+
   }
-  const [sliderRef] = useKeenSlider<HTMLDivElement>(
-    {
-      loop: true,
-    },
-    [
-      (slider) => {
-        let timeout: ReturnType<typeof setTimeout>;
-        let mouseOver = false;
-        function clearNextTimeout() {
-          clearTimeout(timeout);
-        }
-        function nextTimeout() {
-          clearTimeout(timeout);
-          if (mouseOver) return;
-          timeout = setTimeout(() => {
-            slider.next();
-          }, 2000);
-        }
-        slider.on("created", () => {
-          slider.container.addEventListener("mouseover", () => {
-            mouseOver = true;
-            clearNextTimeout();
-          });
-          slider.container.addEventListener("mouseout", () => {
-            mouseOver = false;
-            nextTimeout();
-          });
-          nextTimeout();
-        });
-        slider.on("dragStarted", clearNextTimeout);
-        slider.on("animationEnded", nextTimeout);
-        slider.on("updated", nextTimeout);
-      },
-    ]
-  );
 
   if (error) return <p>Error: {error.message}</p>;
 
   return (
     <div>
-      <Confetti/>
+      <Confetti />
       <NavBar basketItems={basketItems} />
-
-      <div ref={sliderRef} className="keen-slider">
-        <div className="keen-slider__slide number-slide1">{FirstSlideIntroLine}</div>
-        <div className="keen-slider__slide number-slide2">{SecondSlideIntroLine}</div>
-        <div className="keen-slider__slide number-slide3">{ThirdSlideIntroLine}</div>
-        <div className="keen-slider__slide number-slide4">{FourthSlideIntroLine}</div>
-        <div className="keen-slider__slide number-slide5">{FifthSlideIntroLine}</div>
-        <div className="keen-slider__slide number-slide6">{SixthSlideIntroLine}</div>
-      </div>
+      <BannerSlider />
       {
         (loading) && (
           <div className={styles.productGrid}>

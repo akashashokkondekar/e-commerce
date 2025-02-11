@@ -6,7 +6,7 @@ import ProductPage from './pages/Product';
 import AboutUsPage from './pages/AboutUs';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client';
-import client from './ApolloClient';
+import client from './../ApolloClient';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import Checkout from './pages/Checkout';

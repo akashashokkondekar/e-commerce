@@ -16,7 +16,7 @@ interface ProductVariant {
   edges: {
     node: {
       price: {
-        amount: number;
+        amount: string;
         currencyCode: string;
       };
     };

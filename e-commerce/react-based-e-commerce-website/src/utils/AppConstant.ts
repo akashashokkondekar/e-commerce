@@ -33,6 +33,7 @@ export const YourCartText = "Your Cart";
 // MiniBasket.tsx
 export const YourBasketText = "Your Basket";
 export const BasketEmptyInfoText = "Your basket is empty.";
+export const CheckoutButtonText = "Checkout";
 
 // NotFound.tsx
 export const ContentNotFoundText="Opsss...page not found.";
@@ -43,5 +44,4 @@ export const AddItemOperationText = "AddItem";
 export const IncreaseProductQuntityOperationText = "IncreaseProductQuntity"; 
 export const DecreaseProductQuntityOperationText = "DescreaseProductQuntity";
 export const RemoveProductFromCartOperationText = "RemoveProductFromCart";
-export const CheckoutBasketOperationText = "CheckoutBasket";
 

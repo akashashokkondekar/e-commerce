@@ -7,22 +7,15 @@ import { CartEmptyInfoText, PlaceOrderText, YourCartText } from '../utils/AppCon
 interface BasketItem {
   id: string;
   title: string;
+  price: number;
   quantity: number;
-  variants: {
-    edges: {
-      node: {
-        price: {
-          amount: number;
-        };
-      };
-    }[];
-  };
+  currencyCode: string;
 }
 
 const Checkout: React.FC = () => {
   
   const basketItems = useSelector((state: RootState) => state.basket.items);
-  const totalPrice = basketItems.reduce((acc: number, item: BasketItem) => acc + item.variants.edges[0].node.price.amount * item.quantity, 0);
+  const totalPrice = basketItems.reduce((acc: number, item: BasketItem) => acc + item.price * item.quantity, 0);
 
   return (
     <div>
@@ -52,7 +45,7 @@ const Checkout: React.FC = () => {
             basketItems.map((item: BasketItem) => (
               <div key={item.id} className={styles.cartItem}>
                 <span className={styles.itemName}>{item.title} x{item.quantity}</span>
-                <span className={styles.itemPrice}>${(item.variants.edges[0].node.price.amount * item.quantity).toFixed(2)}</span>
+                <span className={styles.itemPrice}>${(item.price * item.quantity).toFixed(2)}</span>
               </div>
             ))
           )}

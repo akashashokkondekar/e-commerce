@@ -6,6 +6,15 @@ import { AddItemOperationText, AddToBasketButtonConditionText, InfoNotAvailableT
 import Confetti from 'react-confetti-boom';
 import { useState } from "react";
 import { AppUtils } from "../utils/AppUtils";
+import { } from '../features/basket/basketSlice';
+
+interface BasketItem {
+  id: string;
+  title: string;
+  price: number;
+  quantity: number;
+  currencyCode: string;
+}
 
 interface ProductCardProps {
   currProductObj: {
@@ -38,7 +47,14 @@ export default function ProductCard({ currProductObj, alreadyAddedInBasket }: Pr
 
     switch (operationName) {
       case AddItemOperationText:
-        dispatch(addItem(currProductObj));
+        const basketItem: BasketItem = {
+          id: currProductObj.id,
+          title: currProductObj.title,
+          price: parseFloat(currProductObj.variants.edges[0].node.price.amount),
+          quantity: 1,
+          currencyCode: AppUtils.GetCurrencySymbolUsingCode(currProductObj.variants.edges[0].node.price.currencyCode)
+        };
+        dispatch(addItem(basketItem));
         updateShowAnimationFlag(true);
         break;
 

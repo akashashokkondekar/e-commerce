@@ -5,6 +5,7 @@ interface BasketItem {
   title: string;
   price: number;
   quantity: number;
+  currencyCode: string;
 }
 
 interface BasketState {

@@ -14,6 +14,12 @@ export const AboutUsThirdSectionLabelDesc = "Have questions or feedback? We woul
 
 // Product.tsx
 export const InfoNotAvailableText = "Information Not Available.";
+export const FirstSlideIntroLine = "Your One-Stop Online Shop for Everything!";
+export const SecondSlideIntroLine = "Click, Shop, Enjoy 🚀";
+export const ThirdSlideIntroLine = "Shopping Made Simple, Just for You.";
+export const FourthSlideIntroLine = "Find Your Perfect Match with Us.";
+export const FifthSlideIntroLine = "Discover Deals You Can't Resist!";
+export const SixthSlideIntroLine = "Elevate Your Shopping Experience 🌟";
 
 // ProductCard.tsx
 export const AddToBasketButtonConditionText = "Add to Basket";
@@ -27,6 +33,10 @@ export const YourCartText = "Your Cart";
 // MiniBasket.tsx
 export const YourBasketText = "Your Basket";
 export const BasketEmptyInfoText = "Your basket is empty.";
+
+// NotFound.tsx
+export const ContentNotFoundText="Opsss...page not found.";
+export const BackToHomeOptionText = "Back to Home";
 
 // Common
 export const AddItemOperationText = "AddItem";

@@ -1,11 +1,16 @@
 import styles from './../css/AboutUs.module.css';
 import NavBar from '../components/NavBar';
 import { AboutUsFirstSectionLabelDesc, AboutUsFirstSectionLabelText, AboutUsSecondSectionLabelDesc, AboutUsSecondSectionLabelText, AboutUsThirdSectionLabelDesc, AboutUsThirdSectionLabelText, OptionThreeText } from '../utils/AppConstant';
+import { useSelector } from 'react-redux';
+import { RootState } from '../app/store';
 
 const AboutUs = () => {
+
+  const basketItems = useSelector((state: RootState) => state.basket.items);
+  
   return (
     <div>
-      <NavBar/>
+      <NavBar basketItems={basketItems}/>
     <div className={styles.container}>
       <h1 className={styles.title}>{OptionThreeText}</h1>
       

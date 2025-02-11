@@ -8,10 +8,10 @@ import { RootState } from '../app/store';
 import {WebsiteNameText, OptionOneText, OptionTwoText, OptionThreeText} from '../utils/AppConstant';
 
 
-const NavBar = () => {
-  
+const NavBar = ({basketItems}) => {
   const [isBasketOpen, setBasketOpen] = useState(false);
-  const basketItems = useSelector((state: RootState) => state.basket.items);
+  // const basketItems = useSelector((state: RootState) => state.basket.items);
+  console.log(JSON.stringify(basketItems));
 
   return (
     <nav className={styles.navbar}>

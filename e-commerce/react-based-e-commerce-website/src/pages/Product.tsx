@@ -11,6 +11,11 @@ import { RootState } from '../app/store';
 import { isEmpty, isNull } from "lodash";
 import ProductCardSkeleton from "../components/ProductCardSkeleton";
 import { FifthSlideIntroLine, FirstSlideIntroLine, FourthSlideIntroLine, SecondSlideIntroLine, SixthSlideIntroLine, ThirdSlideIntroLine } from "../utils/AppConstant";
+import Confetti from "../components/confetti";
+import $ from "jquery";
+import { useEffect } from "react";
+
+let timeOutInstance: any = null;
 
 interface ProductVariant {
   edges: {
@@ -71,9 +76,26 @@ const Get_Product_List = gql`
 `;
 
 const Product: React.FC = () => {
+  
   const { loading, error, data } = useQuery<ProductListData>(Get_Product_List);
   const basketItems = useSelector((state: RootState) => state.basket.items);
 
+  useEffect(() => {
+    $("#confetti").hide();
+  }, []);
+
+  const handleConfettiAnimation = () => {
+    
+    if (!isNull(timeOutInstance) && !isEmpty(timeOutInstance)) {
+      clearTimeout(timeOutInstance);
+    }
+    $("#confetti").fadeIn(200);
+    timeOutInstance = setTimeout(() => {
+      $("#confetti").fadeOut(200);
+      timeOutInstance = null;
+    }, 3000);
+    
+  }
   const [sliderRef] = useKeenSlider<HTMLDivElement>(
     {
       loop: true,
@@ -114,7 +136,9 @@ const Product: React.FC = () => {
 
   return (
     <div>
+      <Confetti/>
       <NavBar basketItems={basketItems} />
+
       <div ref={sliderRef} className="keen-slider">
         <div className="keen-slider__slide number-slide1">{FirstSlideIntroLine}</div>
         <div className="keen-slider__slide number-slide2">{SecondSlideIntroLine}</div>
@@ -142,6 +166,8 @@ const Product: React.FC = () => {
               data?.products.edges.map((currProductObj) => (
                 <Suspense fallback={<ProductCardSkeleton />} key={currProductObj.node.id}>
                   <ProductCard
+                    handleConfettiAnimation={handleConfettiAnimation}
+                    key={currProductObj.node.id}
                     currProductObj={currProductObj.node}
                     alreadyAddedInBasket={
                       !isNull(basketItems) && !isEmpty(basketItems) &&

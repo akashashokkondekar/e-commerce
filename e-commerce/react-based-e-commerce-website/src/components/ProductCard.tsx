@@ -3,10 +3,7 @@ import { useDispatch } from 'react-redux';
 import { addItem, removeItem } from '../features/basket/basketSlice';
 import { isEmpty, isNull } from "lodash";
 import { AddItemOperationText, AddToBasketButtonConditionText, InfoNotAvailableText, RemoveItemFromBasketButtonConditionText, RemoveProductFromCartOperationText } from "../utils/AppConstant";
-import Confetti from 'react-confetti-boom';
-import { useState } from "react";
 import { AppUtils } from "../utils/AppUtils";
-import { } from '../features/basket/basketSlice';
 
 interface BasketItem {
   id: string;
@@ -17,6 +14,7 @@ interface BasketItem {
 }
 
 interface ProductCardProps {
+  handleConfettiAnimation: any,
   currProductObj: {
     id: string;
     featuredImage: {
@@ -38,10 +36,9 @@ interface ProductCardProps {
   alreadyAddedInBasket: boolean;
 }
 
-export default function ProductCard({ currProductObj, alreadyAddedInBasket }: ProductCardProps) {
+export default function ProductCard({ handleConfettiAnimation, currProductObj, alreadyAddedInBasket }: ProductCardProps) {
 
   const dispatch = useDispatch();
-  const [showAnimation, updateShowAnimationFlag] = useState<boolean>(false);
 
   const performUserClickOperation = (operationName: string) => {
 
@@ -55,7 +52,7 @@ export default function ProductCard({ currProductObj, alreadyAddedInBasket }: Pr
           currencyCode: AppUtils.GetCurrencySymbolUsingCode(currProductObj.variants.edges[0].node.price.currencyCode)
         };
         dispatch(addItem(basketItem));
-        updateShowAnimationFlag(true);
+        handleConfettiAnimation();
         break;
 
       case RemoveProductFromCartOperationText:
@@ -68,12 +65,7 @@ export default function ProductCard({ currProductObj, alreadyAddedInBasket }: Pr
   return (
 
     <div key={currProductObj.id} className={styles.productCard}>
-      {showAnimation && <Confetti
-        effectCount={1}
-        mode="boom"
-        particleCount={50}
-        shapeSize={20}
-      />}
+
       <img src={currProductObj.featuredImage.url} alt={currProductObj.title} className={styles.productImage} loading="lazy" />
       <h3 className={styles.productTitle}>{currProductObj.title}</h3>
       <p className={styles.productDescription}>{(!isNull(currProductObj.description) && !isEmpty(currProductObj.description)) ? currProductObj.description : InfoNotAvailableText}</p>
@@ -85,6 +77,5 @@ export default function ProductCard({ currProductObj, alreadyAddedInBasket }: Pr
         {alreadyAddedInBasket ? RemoveItemFromBasketButtonConditionText : AddToBasketButtonConditionText}
       </button>
     </div>
-
   );
 }

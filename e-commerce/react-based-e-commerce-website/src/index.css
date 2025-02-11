@@ -19,23 +19,110 @@ button {
   cursor: pointer;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
-  color: #333;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
+/*
 button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
   cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+*/
+
+
+[class^="number-slide"],
+[class*=" number-slide"] {
+  background: grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  color: #fff;
+  font-weight: 500;
+  height: 300px;
+  max-height: 100vh;
+  width: 100%;
+}
+
+.number-slide1 {
+  background: rgb(64, 175, 255);
+  background: linear-gradient(
+    128deg,
+    rgba(64, 175, 255, 1) 0%,
+    rgba(63, 97, 255, 1) 100%
+  );
+}
+
+.number-slide2 {
+  background: rgb(255, 75, 64);
+  background: linear-gradient(
+    128deg,
+    rgba(255, 154, 63, 1) 0%,
+    rgba(255, 75, 64, 1) 100%
+  );
+}
+
+.number-slide3 {
+  background: rgb(182, 255, 64);
+  background: linear-gradient(
+    128deg,
+    rgba(182, 255, 64, 1) 0%,
+    rgba(63, 255, 71, 1) 100%
+  );
+  background: linear-gradient(
+    128deg,
+    rgba(189, 255, 83, 1) 0%,
+    rgba(43, 250, 82, 1) 100%
+  );
+}
+
+.number-slide4 {
+  background: rgb(64, 255, 242);
+  background: linear-gradient(
+    128deg,
+    rgba(64, 255, 242, 1) 0%,
+    rgba(63, 188, 255, 1) 100%
+  );
+}
+
+.number-slide5 {
+  background: rgb(255, 64, 156);
+  background: linear-gradient(
+    128deg,
+    rgba(255, 64, 156, 1) 0%,
+    rgba(255, 63, 63, 1) 100%
+  );
+}
+
+.number-slide6 {
+  background: rgb(64, 76, 255);
+  background: linear-gradient(
+    128deg,
+    rgba(64, 76, 255, 1) 0%,
+    rgba(174, 63, 255, 1) 100%
+  );
 }

@@ -4,7 +4,7 @@ import { removeItem, updateQuantity } from '../features/basket/basketSlice';
 import { X, Plus, Minus } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import styles from './../css/MiniBasket.module.css';
-import { BasketEmptyInfoText, CheckoutButtonText, DecreaseProductQuntityOperationText, IncreaseProductQuntityOperationText, RemoveProductFromCartOperationText, YourBasketText } from '../utils/AppConstant';
+import { BasketEmptyInfoText, CheckoutButtonText, DecreaseProductQuntityOperationText, IncreaseProductQuntityOperationText, RemoveProductFromCartOperationText, TotalPriceText, YourBasketText } from '../utils/AppConstant';
 
 interface BasketItem {
   id: string;
@@ -59,11 +59,16 @@ const MiniBasket: React.FC = () => {
             <span className={styles.name}>{`${index + 1}. ${item.title}`}</span>
             <div className={styles.controls}>
               <button onClick={() => performUserClickOperation(DecreaseProductQuntityOperationText, item)}>
-                <Minus size={16} />
+                <Minus size={16}
+                  aria-label={`minus-item_${index + 1}`}
+                  data-testid={`minus-item_${index + 1}`} />
               </button>
-              <span>{item.quantity}</span>
+              <span aria-label={`quantity_count_${index + 1}`}
+                data-testid={`quantity_count_${index + 1}`}>{item.quantity}</span>
               <button onClick={() => performUserClickOperation(IncreaseProductQuntityOperationText, item)}>
-                <Plus size={16} />
+                <Plus size={16}
+                  aria-label={`add-item_${index + 1}`}
+                  data-testid={`add-item_${index + 1}`} />
               </button>
             </div>
             <span className={styles.price}>
@@ -71,6 +76,8 @@ const MiniBasket: React.FC = () => {
               {(item.price * item.quantity).toFixed(2)}
             </span>
             <button
+              aria-label={`remove-item_${index + 1}`}
+              data-testid={`remove-item_${index + 1}`}
               onClick={() => performUserClickOperation(RemoveProductFromCartOperationText, item)}
               className={styles.removeBtn}
             >
@@ -82,7 +89,7 @@ const MiniBasket: React.FC = () => {
       {basketItems.length > 0 && (
         <div className={styles.footer}>
           <span>
-            Total: {(basketItems[0].currencyCode)}
+            {TotalPriceText} {(basketItems[0].currencyCode)}
             {totalPrice.toFixed(2)}
           </span>
           <Link to={'/checkout'}>

@@ -34,6 +34,7 @@ export const YourCartText = "Your Cart";
 export const YourBasketText = "Your Basket";
 export const BasketEmptyInfoText = "Your basket is empty.";
 export const CheckoutButtonText = "Checkout";
+export const TotalPriceText = "Total:";
 
 // NotFound.tsx
 export const ContentNotFoundText="Opsss...page not found.";
@@ -45,3 +46,12 @@ export const IncreaseProductQuntityOperationText = "IncreaseProductQuntity";
 export const DecreaseProductQuntityOperationText = "DescreaseProductQuntity";
 export const RemoveProductFromCartOperationText = "RemoveProductFromCart";
 
+// Testcase values
+export const InitialReduxStateValues = {
+  basket: {
+    items: [
+      { id: '1', title: 'Test Product 1', price: 100, quantity: 1, currencyCode: '$' },
+      { id: '2', title: 'Test Product 2', price: 50, quantity: 1, currencyCode: '$' },
+    ],
+  },
+}

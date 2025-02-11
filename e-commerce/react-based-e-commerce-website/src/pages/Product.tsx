@@ -5,6 +5,10 @@ import ProductCard from "../components/ProductCard";
 import styles from "./../css/Product.module.css";
 import { useQuery, gql } from "@apollo/client";
 import NavBar from "../components/NavBar";
+import { useSelector } from 'react-redux';
+import { RootState } from '../app/store';
+import { isEmpty, isNull } from "lodash";
+import Loader from "../components/Loader";
 
 const Get_Product_List = gql`
   {
@@ -57,6 +61,7 @@ const Get_Collection_List = gql`
 function Product() {
 
   const { loading, error, data } = useQuery(Get_Product_List);
+  const basketItems = useSelector((state: RootState) => state.basket.items);
 
   const [sliderRef] = useKeenSlider<HTMLDivElement>(
     {
@@ -94,7 +99,7 @@ function Product() {
     ]
   )
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Loader />;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
@@ -115,7 +120,8 @@ function Product() {
           data.products.edges.map((currProductObj: any) => (
             <ProductCard
               key={currProductObj.node.id}
-              currProductObj={currProductObj.node}/>
+              currProductObj={currProductObj.node}
+              alreadyAddedInBasket={(!isNull(basketItems) && !isEmpty(basketItems) && basketItems.length > 0) ? (basketItems.findIndex((currObj) => currObj.id === currProductObj.node.id) > -1) : false}></ProductCard>
           ))
 
         }

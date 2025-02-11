@@ -1,7 +1,9 @@
+import React from 'react';
 import { RootState } from '../app/store';
 import { useSelector } from 'react-redux';
 import styles from './../css/Checkout.module.css';
 import NavBar from '../components/NavBar';
+import { CartEmptyInfoText, PlaceOrderText, YourCartText } from '../utils/AppConstant';
 
 const Checkout = () => {
   const cartItems = useSelector((state: RootState) => state.basket.items);
@@ -23,14 +25,14 @@ const Checkout = () => {
             <label className={styles.label}>Address
               <input type="text" className={styles.input} placeholder="Enter your address" required />
             </label>
-            <button type="submit" className={styles.submitButton}>Place Order</button>
+            <button type="submit" className={styles.submitButton}>{PlaceOrderText}</button>
           </form>
         </div>
 
         <div className={styles.cartSection}>
-          <h2 className={styles.cartHeader}>Your Cart</h2>
+          <h2 className={styles.cartHeader}>{YourCartText}</h2>
           {cartItems.length === 0 ? (
-            <p className={styles.emptyCart}>No items in cart.</p>
+            <p className={styles.emptyCart}>{CartEmptyInfoText}</p>
           ) : (
             cartItems.map(item => (
               <div key={item.id} className={styles.cartItem}>

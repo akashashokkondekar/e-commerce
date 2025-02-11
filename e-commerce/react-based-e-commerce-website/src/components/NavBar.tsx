@@ -5,6 +5,8 @@ import { ShoppingCart } from 'lucide-react';
 import styles from './../css/NavBar.module.css';
 import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';
+import {WebsiteNameText, OptionOneText, OptionTwoText, OptionThreeText} from '../utils/AppConstant';
+
 
 const NavBar = () => {
   const [isBasketOpen, setBasketOpen] = useState(false);
@@ -13,12 +15,12 @@ const NavBar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <Link to="/">E-Commerce</Link>
+        <Link to="/">{WebsiteNameText}</Link>
       </div>
       <ul className={styles.navLinks}>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/products">Products</Link></li>
-        <li><Link to="/aboutus">About Us</Link></li>
+        <li><Link to="/">{OptionOneText}</Link></li>
+        <li><Link to="/products">{OptionTwoText}</Link></li>
+        <li><Link to="/aboutus">{OptionThreeText}</Link></li>
       </ul>
       <div className={styles.basketIcon} onClick={() => setBasketOpen(!isBasketOpen)}>
         <ShoppingCart size={24} fill={(basketItems.length === 0) ? "" : "white"}/>

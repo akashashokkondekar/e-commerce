@@ -1,4 +1,3 @@
-import React from 'react';
 import { RootState } from '../app/store';
 import { useSelector } from 'react-redux';
 import styles from './../css/Checkout.module.css';

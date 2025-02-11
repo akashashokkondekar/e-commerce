@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import MiniBasket from './MiniBasket';
 import { ShoppingCart } from 'lucide-react';
 import styles from './../css/NavBar.module.css';
-import { useSelector } from 'react-redux';
-import { RootState } from '../app/store';
+
 import {WebsiteNameText, OptionOneText, OptionTwoText, OptionThreeText} from '../utils/AppConstant';
 
 
 const NavBar = ({basketItems}) => {
+  
   const [isBasketOpen, setBasketOpen] = useState(false);
-  // const basketItems = useSelector((state: RootState) => state.basket.items);
   console.log(JSON.stringify(basketItems));
 
   return (

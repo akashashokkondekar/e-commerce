@@ -4,12 +4,15 @@ import MiniBasket from './MiniBasket';
 import { ShoppingCart } from 'lucide-react';
 import styles from './../css/NavBar.module.css';
 
-import {WebsiteNameText, OptionOneText, OptionTwoText, OptionThreeText} from '../utils/AppConstant';
+import { WebsiteNameText, OptionOneText, OptionTwoText, OptionThreeText } from '../utils/AppConstant';
 
+interface NavBarProps {
+  basketItems: Array<any>;
+}
 
-const NavBar = ({basketItems}) => {
-  
-  const [isBasketOpen, setBasketOpen] = useState(false);
+const NavBar: React.FC<NavBarProps> = ({ basketItems }) => {
+  const [isBasketOpen, setBasketOpen] = useState<boolean>(false);
+
   console.log(JSON.stringify(basketItems));
 
   return (
@@ -23,7 +26,7 @@ const NavBar = ({basketItems}) => {
         <li><Link to="/aboutus">{OptionThreeText}</Link></li>
       </ul>
       <div className={styles.basketIcon} onClick={() => setBasketOpen(!isBasketOpen)}>
-        <ShoppingCart size={24} fill={(basketItems.length === 0) ? "" : "white"}/>
+        <ShoppingCart size={24} fill={basketItems.length === 0 ? "" : "white"} />
       </div>
 
       {isBasketOpen && <MiniBasket />}

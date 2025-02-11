@@ -4,34 +4,33 @@ import { AboutUsFirstSectionLabelDesc, AboutUsFirstSectionLabelText, AboutUsSeco
 import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';
 
-const AboutUs = () => {
-
+const AboutUs: React.FC = () => {
   const basketItems = useSelector((state: RootState) => state.basket.items);
-  
+
   return (
     <div>
-      <NavBar basketItems={basketItems}/>
-    <div className={styles.container}>
-      <h1 className={styles.title}>{OptionThreeText}</h1>
-      
-      <section className={styles.section}>
-        <h2 className={styles.subtitle}>{AboutUsFirstSectionLabelText}</h2>
-        <p className={styles.text}>
-          {AboutUsFirstSectionLabelDesc}
-        </p>
-      </section>
+      <NavBar basketItems={basketItems} />
+      <div className={styles.container}>
+        <h1 className={styles.title}>{OptionThreeText}</h1>
 
-      <section className={styles.section}>
-        <h2 className={styles.subtitle}>{AboutUsSecondSectionLabelText}</h2>
-        <p className={styles.text}>{AboutUsSecondSectionLabelDesc}</p>
-      </section>
+        <section className={styles.section}>
+          <h2 className={styles.subtitle}>{AboutUsFirstSectionLabelText}</h2>
+          <p className={styles.text}>{AboutUsFirstSectionLabelDesc}</p>
+        </section>
 
-      <section className={styles.section}>
-        <h2 className={styles.subtitle}>{AboutUsThirdSectionLabelText}</h2>
-        <p className={styles.text}  dangerouslySetInnerHTML={{__html: AboutUsThirdSectionLabelDesc}}>
-        </p>
-      </section>
-    </div>
+        <section className={styles.section}>
+          <h2 className={styles.subtitle}>{AboutUsSecondSectionLabelText}</h2>
+          <p className={styles.text}>{AboutUsSecondSectionLabelDesc}</p>
+        </section>
+
+        <section className={styles.section}>
+          <h2 className={styles.subtitle}>{AboutUsThirdSectionLabelText}</h2>
+          <p
+            className={styles.text}
+            dangerouslySetInnerHTML={{ __html: AboutUsThirdSectionLabelDesc }}
+          ></p>
+        </section>
+      </div>
     </div>
   );
 };

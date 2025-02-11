@@ -15,7 +15,7 @@ const initialState: BasketState = {
   items: [],
 };
 
-export const basketSlice = createSlice({
+const basketSlice = createSlice({
   name: 'basket',
   initialState,
   reducers: {
@@ -36,7 +36,7 @@ export const basketSlice = createSlice({
         item.quantity = action.payload.quantity;
       }
     },
-    clearBasket: state => {
+    clearBasket: (state) => {
       state.items = [];
     },
   },

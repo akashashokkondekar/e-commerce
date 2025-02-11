@@ -7,7 +7,29 @@ import Confetti from 'react-confetti-boom';
 import { useState } from "react";
 import { AppUtils } from "../utils/AppUtils";
 
-export default function ProductCard({ currProductObj, alreadyAddedInBasket }) {
+interface ProductCardProps {
+  currProductObj: {
+    id: string;
+    featuredImage: {
+      url: string;
+    };
+    title: string;
+    description: string | null;
+    variants: {
+      edges: {
+        node: {
+          price: {
+            currencyCode: string;
+            amount: string;
+          };
+        };
+      }[];
+    };
+  };
+  alreadyAddedInBasket: boolean;
+}
+
+export default function ProductCard({ currProductObj, alreadyAddedInBasket }: ProductCardProps) {
 
   const dispatch = useDispatch();
   const [showAnimation, updateShowAnimationFlag] = useState<boolean>(false);

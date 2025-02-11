@@ -4,14 +4,29 @@ import styles from './../css/Checkout.module.css';
 import NavBar from '../components/NavBar';
 import { CartEmptyInfoText, PlaceOrderText, YourCartText } from '../utils/AppConstant';
 
-const Checkout = () => {
+interface BasketItem {
+  id: string;
+  title: string;
+  quantity: number;
+  variants: {
+    edges: {
+      node: {
+        price: {
+          amount: number;
+        };
+      };
+    }[];
+  };
+}
+
+const Checkout: React.FC = () => {
   
   const basketItems = useSelector((state: RootState) => state.basket.items);
-  const totalPrice = basketItems.reduce((acc, item) => acc + item.variants.edges[0].node.price.amount * item.quantity, 0);
+  const totalPrice = basketItems.reduce((acc: number, item: BasketItem) => acc + item.variants.edges[0].node.price.amount * item.quantity, 0);
 
   return (
     <div>
-      <NavBar basketItems={basketItems}/>
+      <NavBar basketItems={basketItems} />
       <div className={styles.checkoutContainer}>
         <div className={styles.formSection}>
           <h1 className={styles.header}>Checkout</h1>
@@ -34,7 +49,7 @@ const Checkout = () => {
           {basketItems.length === 0 ? (
             <p className={styles.emptyCart}>{CartEmptyInfoText}</p>
           ) : (
-            basketItems.map(item => (
+            basketItems.map((item: BasketItem) => (
               <div key={item.id} className={styles.cartItem}>
                 <span className={styles.itemName}>{item.title} x{item.quantity}</span>
                 <span className={styles.itemPrice}>${(item.variants.edges[0].node.price.amount * item.quantity).toFixed(2)}</span>
@@ -45,7 +60,6 @@ const Checkout = () => {
             <span>Total:</span>
             <span className={styles.totalPrice}>${totalPrice.toFixed(2)}</span>
           </div>
-
         </div>
       </div>
     </div>

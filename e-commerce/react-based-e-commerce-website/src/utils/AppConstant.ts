@@ -21,6 +21,8 @@ export const FourthSlideIntroLine = "Find Your Perfect Match with Us.";
 export const FifthSlideIntroLine = "Discover Deals You Can't Resist!";
 export const SixthSlideIntroLine = "Elevate Your Shopping Experience 🌟";
 export const ConfettiEffectTimeOutValue = 3000; // In MS
+export const ProductAddedIntoBasketText = "Product added into the basket.";
+export const ProductRemovedFromBasketText = "Product removed from basket.";
 
 // ProductCard.tsx
 export const AddToBasketButtonConditionText = "Add to Basket";
@@ -46,6 +48,21 @@ export const AddItemOperationText = "AddItem";
 export const IncreaseProductQuntityOperationText = "IncreaseProductQuntity"; 
 export const DecreaseProductQuntityOperationText = "DescreaseProductQuntity";
 export const RemoveProductFromCartOperationText = "RemoveProductFromCart";
+export const ShowToastToUserText = "ShowToastToUser";
+export const ShowConfettiAnimationText = "ShowConfettiAnimation";
+
+export enum OperationTypeEnum {
+  None = 0,
+  Product_Added = 1,
+  Product_Removed = 2
+}
+
+export enum ToastTypeEnum {
+  Default = 0,
+  Error = 1,
+  Success = 2,
+  Warning = 3
+}
 
 // Testcase values
 export const InitialReduxStateValues = {

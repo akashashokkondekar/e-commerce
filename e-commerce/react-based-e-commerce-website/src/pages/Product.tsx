@@ -7,11 +7,12 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';
 import { isEmpty, isNull } from "lodash";
 import ProductCardSkeleton from "../components/ProductCardSkeleton";
-import { ConfettiEffectTimeOutValue } from "../utils/AppConstant";
+import { ConfettiEffectTimeOutValue, OperationTypeEnum, ProductAddedIntoBasketText, ProductRemovedFromBasketText, ShowConfettiAnimationText, ToastTypeEnum } from "../utils/AppConstant";
 import Confetti from "../components/Confetti";
 import $ from "jquery";
 import { useEffect } from "react";
 import BannerSlider from "../components/BannerSlider";
+import { ToastContainer, toast } from 'react-toastify';
 
 let timeOutInstance: any = null;
 
@@ -24,6 +25,10 @@ interface ProductVariant {
       };
     };
   }[];
+}
+
+interface EmitValue {
+  operationType: number
 }
 
 interface ProductNode {
@@ -82,6 +87,46 @@ const Product: React.FC = () => {
     $("#confetti").hide();
   }, []);
 
+  const handleUserClicks = (obj: EmitValue) => {
+
+    switch (obj.operationType) {
+
+      case OperationTypeEnum.Product_Added:
+
+        handleConfettiAnimation();
+        showToastMsgToUser(ProductAddedIntoBasketText, ToastTypeEnum.Success);
+        break;
+
+      case OperationTypeEnum.Product_Removed:
+        showToastMsgToUser(ProductRemovedFromBasketText, ToastTypeEnum.Warning);
+        break;
+
+    }
+  }
+
+  const showToastMsgToUser = (msgToShow: string, type: number) => {
+
+    switch (type) {
+
+      default:
+      case ToastTypeEnum.Default:
+        toast(msgToShow);
+        break;
+
+      case ToastTypeEnum.Success:
+        toast.success(msgToShow);
+        break;
+
+      case ToastTypeEnum.Error:
+        toast.error(msgToShow);
+        break;
+
+      case ToastTypeEnum.Warning:
+        toast.warning(msgToShow);
+        break;
+    }
+  }
+
   const handleConfettiAnimation = () => {
 
     if (!isNull(timeOutInstance) && !isEmpty(timeOutInstance)) {
@@ -95,13 +140,14 @@ const Product: React.FC = () => {
 
   }
 
-  if (error) return <p>Error: {error.message}</p>;
+  if (error) { showToastMsgToUser(error.message, ToastTypeEnum.Error) };
 
   return (
     <div>
       <Confetti />
       <NavBar basketItems={basketItems} />
       <BannerSlider />
+      <ToastContainer />
       {
         (loading) && (
           <div className={styles.productGrid}>
@@ -121,7 +167,7 @@ const Product: React.FC = () => {
               data?.products.edges.map((currProductObj) => (
                 <Suspense fallback={<ProductCardSkeleton />} key={currProductObj.node.id}>
                   <ProductCard
-                    handleConfettiAnimation={handleConfettiAnimation}
+                    performUserClickAction={handleUserClicks}
                     key={currProductObj.node.id}
                     currProductObj={currProductObj.node}
                     alreadyAddedInBasket={

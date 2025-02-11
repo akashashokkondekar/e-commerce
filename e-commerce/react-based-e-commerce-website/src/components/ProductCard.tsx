@@ -2,7 +2,7 @@ import styles from "./../css/ProductCard.module.css";
 import { useDispatch } from 'react-redux';
 import { addItem, removeItem } from '../features/basket/basketSlice';
 import { isEmpty, isNull } from "lodash";
-import { AddItemOperationText, AddToBasketButtonConditionText, InfoNotAvailableText, RemoveItemFromBasketButtonConditionText, RemoveProductFromCartOperationText } from "../utils/AppConstant";
+import { AddItemOperationText, AddToBasketButtonConditionText, InfoNotAvailableText, OperationTypeEnum, RemoveItemFromBasketButtonConditionText, RemoveProductFromCartOperationText, ShowConfettiAnimationText } from "../utils/AppConstant";
 import { AppUtils } from "../utils/AppUtils";
 
 interface BasketItem {
@@ -13,8 +13,12 @@ interface BasketItem {
   currencyCode: string;
 }
 
+interface EmitValue {
+  operationType: number
+}
+
 interface ProductCardProps {
-  handleConfettiAnimation: any,
+  performUserClickAction: any,
   currProductObj: {
     id: string;
     featuredImage: {
@@ -36,7 +40,7 @@ interface ProductCardProps {
   alreadyAddedInBasket: boolean;
 }
 
-export default function ProductCard({ handleConfettiAnimation, currProductObj, alreadyAddedInBasket }: ProductCardProps) {
+export default function ProductCard({ performUserClickAction, currProductObj, alreadyAddedInBasket }: ProductCardProps) {
 
   const dispatch = useDispatch();
 
@@ -44,6 +48,7 @@ export default function ProductCard({ handleConfettiAnimation, currProductObj, a
 
     switch (operationName) {
       case AddItemOperationText:
+
         const basketItem: BasketItem = {
           id: currProductObj.id,
           title: currProductObj.title,
@@ -52,14 +57,33 @@ export default function ProductCard({ handleConfettiAnimation, currProductObj, a
           currencyCode: AppUtils.GetCurrencySymbolUsingCode(currProductObj.variants.edges[0].node.price.currencyCode)
         };
         dispatch(addItem(basketItem));
-        handleConfettiAnimation();
+        performPostItemAddOperation();
         break;
 
       case RemoveProductFromCartOperationText:
         dispatch(removeItem(currProductObj.id));
+        performPostItemRemoveOperation();
         break;
 
     }
+  }
+
+  const performPostItemAddOperation = () => {
+
+    const objToReturn: EmitValue = {
+      operationType: OperationTypeEnum.Product_Added
+    }
+    performUserClickAction(objToReturn);
+
+  }
+
+  const performPostItemRemoveOperation = () => {
+
+    const objToReturn: EmitValue = {
+      operationType: OperationTypeEnum.Product_Removed
+    }
+    performUserClickAction(objToReturn);
+
   }
 
   return (

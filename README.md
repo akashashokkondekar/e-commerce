@@ -68,6 +68,9 @@ npm run build
 - **State Management:** React's built-in Context API was used to manage the basket state globally. This allows the mini basket to persist across different pages and routes without needing to re-fetch the basket data each time.
 - **Routing:** React Router was used to implement navigation between pages, providing a smooth, single-page application experience.
 - **UI/UX:** I used CSS Modules for styling the components, ensuring scoped and modular styles that prevent potential conflicts. Website was designed to be responsive and functional across devices.
+- **App Performance Improvements:**
+  - **Lazy Loading:** I implemented lazy loading for images and other media-heavy content. The decision to do so was driven by the need to improve initial page load times. By deferring the loading of images until they are needed (i.e., when they enter the viewport), I significantly reduced the initial resource load and minimized unnecessary network requests. This results in faster page rendering, particularly on slower networks and mobile devices, enhancing the user experience.
+  - **Code Splitting (React.lazy & Suspense):** I used React.lazy() and Suspense to enable code splitting within the app. This decision helps optimize performance by breaking down the JavaScript bundle into smaller, manageable chunks, which are loaded only when needed. By loading only the code required for the current page, this reduces the overall bundle size and speeds up the initial load time. As the user navigates between pages, additional JavaScript is fetched on demand, making the app more responsive and efficient.
 
 ## **Potential Improvements (If Given More Time)**
 

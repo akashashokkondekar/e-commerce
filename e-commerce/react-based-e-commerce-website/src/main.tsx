@@ -1,15 +1,15 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import './index.css';
-import NotFoundPage from './pages/NotFound';
-import ProductPage from './pages/Product';
-import AboutUsPage from './pages/AboutUs';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import React from 'react';
 import { ApolloProvider } from '@apollo/client';
 import client from './../ApolloClient';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
-import Checkout from './pages/Checkout';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+const NotFoundPage = React.lazy(() => import("./pages/NotFound"));
+const ProductPage = React.lazy(() => import("./pages/Product"));
+const AboutUsPage = React.lazy(() => import("./pages/AboutUs"));
+const CheckoutPage = React.lazy(() => import("./pages/Checkout"));
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 const router = createBrowserRouter([
   {
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/checkout',
-    element: <Checkout />,
+    element: <CheckoutPage />,
   },
 ]);
 

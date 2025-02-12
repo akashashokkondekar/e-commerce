@@ -2,7 +2,7 @@ import { RootState } from '../app/store';
 import { useSelector } from 'react-redux';
 import styles from './../css/Checkout.module.css';
 import NavBar from '../components/NavBar';
-import { CartEmptyInfoText, PlaceOrderText, YourCartText } from '../utils/AppConstant';
+import { CartEmptyInfoText, PlaceOrderText, TotalPriceText, YourCartText } from '../utils/AppConstant';
 
 interface BasketItem {
   id: string;
@@ -31,7 +31,7 @@ const Checkout: React.FC = () => {
               <input type="email" className={styles.input} placeholder="Enter your email" required />
             </label>
             <label className={styles.label}>Address
-              <input type="text" className={styles.input} placeholder="Enter your address" required />
+              <textarea className={styles.input} placeholder="Enter your address" required />
             </label>
             <button type="submit" className={styles.submitButton}>{PlaceOrderText}</button>
           </form>
@@ -50,7 +50,7 @@ const Checkout: React.FC = () => {
             ))
           )}
           <div className={styles.totalSection}>
-            <span>Total:</span>
+            <span>{TotalPriceText}</span>
             <span className={styles.totalPrice}>${totalPrice.toFixed(2)}</span>
           </div>
         </div>

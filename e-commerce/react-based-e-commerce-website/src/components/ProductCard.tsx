@@ -2,7 +2,7 @@ import styles from "./../css/ProductCard.module.css";
 import { useDispatch } from 'react-redux';
 import { addItem, removeItem } from '../features/basket/basketSlice';
 import { isEmpty, isNull } from "lodash";
-import { AddItemOperationText, AddToBasketButtonConditionText, InfoNotAvailableText, OperationTypeEnum, RemoveItemFromBasketButtonConditionText, RemoveProductFromCartOperationText, ShowConfettiAnimationText } from "../utils/AppConstant";
+import { AddToBasketButtonConditionText, InfoNotAvailableText, OperationTypeEnum, RemoveItemFromBasketButtonConditionText } from "../utils/AppConstant";
 import { AppUtils } from "../utils/AppUtils";
 
 interface BasketItem {
@@ -44,10 +44,10 @@ export default function ProductCard({ performUserClickAction, currProductObj, al
 
   const dispatch = useDispatch();
 
-  const performUserClickOperation = (operationName: string) => {
+  const performUserClickOperation = (operationType: number) => {
 
-    switch (operationName) {
-      case AddItemOperationText:
+    switch (operationType) {
+      case OperationTypeEnum.Add_Product:
 
         const basketItem: BasketItem = {
           id: currProductObj.id,
@@ -60,7 +60,7 @@ export default function ProductCard({ performUserClickAction, currProductObj, al
         performPostItemAddOperation();
         break;
 
-      case RemoveProductFromCartOperationText:
+      case OperationTypeEnum.Remove_Product:
         dispatch(removeItem(currProductObj.id));
         performPostItemRemoveOperation();
         break;
@@ -71,7 +71,7 @@ export default function ProductCard({ performUserClickAction, currProductObj, al
   const performPostItemAddOperation = () => {
 
     const objToReturn: EmitValue = {
-      operationType: OperationTypeEnum.Product_Added
+      operationType: OperationTypeEnum.Add_Product
     }
     performUserClickAction(objToReturn);
 
@@ -80,7 +80,7 @@ export default function ProductCard({ performUserClickAction, currProductObj, al
   const performPostItemRemoveOperation = () => {
 
     const objToReturn: EmitValue = {
-      operationType: OperationTypeEnum.Product_Removed
+      operationType: OperationTypeEnum.Remove_Product
     }
     performUserClickAction(objToReturn);
 
@@ -95,7 +95,7 @@ export default function ProductCard({ performUserClickAction, currProductObj, al
       <p className={styles.productDescription}>{(!isNull(currProductObj.description) && !isEmpty(currProductObj.description)) ? currProductObj.description : InfoNotAvailableText}</p>
       <p className={styles.productPrice}>{AppUtils.GetCurrencySymbolUsingCode(currProductObj.variants.edges[0].node.price.currencyCode)}{parseInt(currProductObj.variants.edges[0].node.price.amount).toFixed(2)}</p>
       <button
-        onClick={() => performUserClickOperation(alreadyAddedInBasket ? RemoveProductFromCartOperationText : AddItemOperationText)}
+        onClick={() => performUserClickOperation(alreadyAddedInBasket ? OperationTypeEnum.Remove_Product : OperationTypeEnum.Add_Product)}
         className={alreadyAddedInBasket ? styles.removeItemButton : styles.addButton}
       >
         {alreadyAddedInBasket ? RemoveItemFromBasketButtonConditionText : AddToBasketButtonConditionText}

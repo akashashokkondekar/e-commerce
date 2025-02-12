@@ -43,18 +43,19 @@ export const TotalPriceText = "Total:";
 export const ContentNotFoundText="Opsss...page not found.";
 export const BackToHomeOptionText = "Back to Home";
 
-// Common
-export const AddItemOperationText = "AddItem";
-export const IncreaseProductQuntityOperationText = "IncreaseProductQuntity"; 
-export const DecreaseProductQuntityOperationText = "DescreaseProductQuntity";
-export const RemoveProductFromCartOperationText = "RemoveProductFromCart";
-export const ShowToastToUserText = "ShowToastToUser";
-export const ShowConfettiAnimationText = "ShowConfettiAnimation";
+// Toast Notification Configuration Param (Refer: https://fkhadra.github.io/react-toastify/introduction/)
+export const NewestNotificationOnTop = true;
+export const AutoCloseNotificationDuration = 2000; // In Ms
+export const NotificationPosition = "bottom-right";
+export const NotificationTheme = "dark";
 
+// Enum
 export enum OperationTypeEnum {
   None = 0,
-  Product_Added = 1,
-  Product_Removed = 2
+  Add_Product = 1,
+  Remove_Product = 2,
+  Increase_Product_Quantity = 3,
+  Decrease_Product_Quantity = 4
 }
 
 export enum ToastTypeEnum {

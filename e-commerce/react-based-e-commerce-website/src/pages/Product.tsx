@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';
 import { isEmpty, isNull } from "lodash";
 import ProductCardSkeleton from "../components/ProductCardSkeleton";
-import { ConfettiEffectTimeOutValue, OperationTypeEnum, ProductAddedIntoBasketText, ProductRemovedFromBasketText, ShowConfettiAnimationText, ToastTypeEnum } from "../utils/AppConstant";
+import { AutoCloseNotificationDuration, ConfettiEffectTimeOutValue, NewestNotificationOnTop, NotificationPosition, NotificationTheme, OperationTypeEnum, ProductAddedIntoBasketText, ProductRemovedFromBasketText, ToastTypeEnum } from "../utils/AppConstant";
 import Confetti from "../components/Confetti";
 import $ from "jquery";
 import { useEffect } from "react";
@@ -91,13 +91,13 @@ const Product: React.FC = () => {
 
     switch (obj.operationType) {
 
-      case OperationTypeEnum.Product_Added:
+      case OperationTypeEnum.Add_Product:
 
         handleConfettiAnimation();
         showToastMsgToUser(ProductAddedIntoBasketText, ToastTypeEnum.Success);
         break;
 
-      case OperationTypeEnum.Product_Removed:
+      case OperationTypeEnum.Remove_Product:
         showToastMsgToUser(ProductRemovedFromBasketText, ToastTypeEnum.Warning);
         break;
 
@@ -147,7 +147,13 @@ const Product: React.FC = () => {
       <Confetti />
       <NavBar basketItems={basketItems} />
       <BannerSlider />
-      <ToastContainer />
+      <ToastContainer
+        draggable
+        closeOnClick
+        newestOnTop={NewestNotificationOnTop}
+        autoClose={AutoCloseNotificationDuration}
+        theme={NotificationTheme}
+        position={NotificationPosition} />
       {
         (loading) && (
           <div className={styles.productGrid}>

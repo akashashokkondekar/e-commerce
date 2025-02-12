@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../app/store';
 import { removeItem, updateQuantity } from '../features/basket/basketSlice';
-import { X, Plus, Minus } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import styles from './../css/MiniBasket.module.css';
-import { BasketEmptyInfoText, CheckoutButtonText, DecreaseProductQuntityOperationText, IncreaseProductQuntityOperationText, RemoveProductFromCartOperationText, TotalPriceText, YourBasketText } from '../utils/AppConstant';
+import { BasketEmptyInfoText, CheckoutButtonText, OperationTypeEnum, TotalPriceText, YourBasketText } from '../utils/AppConstant';
+import BasketItem from './BasketItem';
 
 interface BasketItem {
   id: string;
@@ -19,14 +19,14 @@ const MiniBasket: React.FC = () => {
   const basketItems = useSelector((state: RootState) => state.basket.items as BasketItem[]);
   const dispatch = useDispatch();
 
-  const performUserClickOperation = (operationName: string, currProductObj: BasketItem) => {
+  const performUserClickOperation = (operationType: number, currProductObj: BasketItem) => {
 
-    switch (operationName) {
-      case IncreaseProductQuntityOperationText:
+    switch (operationType) {
+      case OperationTypeEnum.Increase_Product_Quantity:
         dispatch(updateQuantity({ id: currProductObj.id, quantity: currProductObj.quantity + 1 }));
         break;
 
-      case DecreaseProductQuntityOperationText:
+      case OperationTypeEnum.Decrease_Product_Quantity:
         if (currProductObj.quantity === 1) {
           dispatch(removeItem(currProductObj.id));
         } else {
@@ -34,7 +34,7 @@ const MiniBasket: React.FC = () => {
         }
         break;
 
-      case RemoveProductFromCartOperationText:
+      case OperationTypeEnum.Remove_Product:
         dispatch(removeItem(currProductObj.id));
         break;
 
@@ -55,35 +55,12 @@ const MiniBasket: React.FC = () => {
         <p className={styles.empty}>{BasketEmptyInfoText}</p>
       ) : (
         basketItems.map((item, index) => (
-          <div key={item.id} className={styles.item}>
-            <span className={styles.name}>{`${index + 1}. ${item.title}`}</span>
-            <div className={styles.controls}>
-              <button onClick={() => performUserClickOperation(DecreaseProductQuntityOperationText, item)}>
-                <Minus size={16}
-                  aria-label={`minus-item_${index + 1}`}
-                  data-testid={`minus-item_${index + 1}`} />
-              </button>
-              <span aria-label={`quantity_count_${index + 1}`}
-                data-testid={`quantity_count_${index + 1}`}>{item.quantity}</span>
-              <button onClick={() => performUserClickOperation(IncreaseProductQuntityOperationText, item)}>
-                <Plus size={16}
-                  aria-label={`add-item_${index + 1}`}
-                  data-testid={`add-item_${index + 1}`} />
-              </button>
-            </div>
-            <span className={styles.price}>
-              {item.currencyCode}
-              {(item.price * item.quantity).toFixed(2)}
-            </span>
-            <button
-              aria-label={`remove-item_${index + 1}`}
-              data-testid={`remove-item_${index + 1}`}
-              onClick={() => performUserClickOperation(RemoveProductFromCartOperationText, item)}
-              className={styles.removeBtn}
-            >
-              <X size={16} />
-            </button>
-          </div>
+          <BasketItem
+            key={item.id}
+            item={item}
+            index={index}
+            performUserClickOperation={performUserClickOperation}
+          />
         ))
       )}
       {basketItems.length > 0 && (

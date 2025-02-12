@@ -24,39 +24,15 @@
   margin-top: 1rem;
 }
 
-.item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 0.5rem;
-}
-
-.name {
-  flex: 1;
-  font-weight: bold;
-  color: #000;
-}
-
-.controls {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #000;
-}
-
-.price {
-  font-weight: bold;
-  color: #000;
-}
-
-.removeBtn {
-  background: none;
+.checkoutBtn {
+  background-color: #1e90ff;
+  color: white;
   border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
   cursor: pointer;
-  color: #ff4d4f;
 }
+
 
 .footer {
   margin-top: auto;
@@ -66,13 +42,4 @@
   justify-content: space-between;
   align-items: center;
   color: #1e90ff;
-}
-
-.checkoutBtn {
-  background-color: #1e90ff;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
 }

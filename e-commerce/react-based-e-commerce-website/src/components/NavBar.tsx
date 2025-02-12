@@ -22,7 +22,7 @@ const NavBar: React.FC<NavBarProps> = ({ basketItems }) => {
       </div>
       <ul className={styles.navLinks}>
         <li><Link to="/">{OptionOneText}</Link></li>
-        <li><Link to="/products">{OptionTwoText}</Link></li>
+        {/* <li><Link to="/products">{OptionTwoText}</Link></li> */}
         <li><Link to="/aboutus">{OptionThreeText}</Link></li>
       </ul>
       <div className={styles.basketIcon} onClick={() => setBasketOpen(!isBasketOpen)}>

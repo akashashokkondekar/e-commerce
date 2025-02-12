@@ -2,7 +2,7 @@ import { RootState } from '../app/store';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './../css/Checkout.module.css';
 import NavBar from '../components/NavBar';
-import { AddressEmptyErrorText, AddressPlaceholderText, AutoCloseNotificationDuration, CartEmptyInfoText, EmailAddressEmptyErrorText, EmailAddressPlaceholderText, InvalidEmailAddressFoundErrorText, NameEmptyErrorText, NamePlaceholderText, NewestNotificationOnTop, NotificationPosition, NotificationTheme, OrderPlacedSuccessfullyText, PlaceOrderText, ToastTypeEnum, TotalPriceText, YourCartText } from '../utils/AppConstant';
+import { AddressEmptyErrorText, AddressLabelText, AddressPlaceholderText, AutoCloseNotificationDuration, CartEmptyInfoText, EmailAddressEmptyErrorText, EmailAddressPlaceholderText, EmailLabelText, FullNameLabelText, InvalidEmailAddressFoundErrorText, NameEmptyErrorText, NamePlaceholderText, NewestNotificationOnTop, NotificationPosition, NotificationTheme, OrderPlacedSuccessfullyText, PlaceOrderText, ToastTypeEnum, TotalPriceText, YourCartText } from '../utils/AppConstant';
 import { useState } from 'react';
 import { isEmpty, isNull } from 'lodash';
 import { toast, ToastContainer } from 'react-toastify';
@@ -120,13 +120,13 @@ const Checkout: React.FC = () => {
         <div className={styles.formSection}>
           <h1 className={styles.header}>Checkout</h1>
           <div className={styles.form}>
-            <label className={styles.label}>Name
+            <label htmlFor={FullNameLabelText} className={styles.label}>{FullNameLabelText}
               <input type="text" value={userDeliveryDetails.name} disabled={basketItems.length === 0} onChange={e => setUserDeliveryDetails({ ...userDeliveryDetails, name: e.target.value })} className={styles.input} placeholder={NamePlaceholderText} />
             </label>
-            <label className={styles.label}>Email
+            <label htmlFor={EmailLabelText} className={styles.label}>
               <input type="email" value={userDeliveryDetails.email} disabled={basketItems.length === 0} onChange={e => setUserDeliveryDetails({ ...userDeliveryDetails, email: e.target.value })} className={styles.input} placeholder={EmailAddressPlaceholderText} />
             </label>
-            <label className={styles.label}>Address
+            <label htmlFor={AddressLabelText} className={styles.label}>Address
               <textarea value={userDeliveryDetails.address} disabled={basketItems.length === 0} onChange={e => setUserDeliveryDetails({ ...userDeliveryDetails, address: e.target.value })} className={styles.textarea} placeholder={AddressPlaceholderText} />
             </label>
             <button onClick={() => handlePlaceOrderOperation()} disabled={basketItems.length === 0} className={basketItems.length === 0 ? styles.disableSubmitButton : styles.submitButton}>{PlaceOrderText}</button>

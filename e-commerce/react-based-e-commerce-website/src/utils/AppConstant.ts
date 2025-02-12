@@ -32,14 +32,17 @@ export const RemoveItemFromBasketButtonConditionText = "Remove";
 export const PlaceOrderText = "Place Order";
 export const CartEmptyInfoText = "Your cart is empty.";
 export const YourCartText = "Your Cart";
-export const NamePlaceholderText = "Enter your full name";
-export const EmailAddressPlaceholderText = "Enter your email address";
-export const AddressPlaceholderText = "Enter your delivery address";
+export const NamePlaceholderText = "Jone Doe";
+export const EmailAddressPlaceholderText = "abc@gmail.com";
+export const AddressPlaceholderText = "Warwickshire, United Kingdom BD12";
 export const NameEmptyErrorText = "Full name can\'t be empty.";
 export const EmailAddressEmptyErrorText = "Email address can\'t be empty.";
 export const InvalidEmailAddressFoundErrorText = "Invalid Email address found.";
 export const AddressEmptyErrorText = "Address can\'t be empty.";
 export const OrderPlacedSuccessfullyText = "Your Order placed successfully.";
+export const FullNameLabelText = "Name";
+export const EmailLabelText = "Email";
+export const AddressLabelText = "Delivery Address";
 
 // MiniBasket.tsx
 export const YourBasketText = "Your Basket";

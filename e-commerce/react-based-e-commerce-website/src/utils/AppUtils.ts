@@ -17,4 +17,9 @@ export class AppUtils {
     return valueToReturn;
   
   }
+
+  static isValidateEmailAddress = (email: string) => {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  }
 }

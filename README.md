@@ -19,7 +19,12 @@ The app features:
 - If users attempt to access a page that doesn’t exist, they will be shown a custom **404 Error page** with an error message: "Opsss...page not found." This informs users when they navigate to a non-existent page, keeping the app user-friendly and informative.
 - A **sliding banner feature** was added, which can be used to display offers, promotions, or announcements on the site. This dynamic element adds interactivity to the page and keeps users engaged.
 
-The overall goal was to build a smooth, intuitive shopping experience with an emphasis on usability and performance.
+The overall goal was to build a smooth, intuitive shopping experience with an emphasis on usability and performance. 
+
+## **Live Demo**
+```bash
+https://osc-e-commerce.netlify.app/
+```
 
 ## Setup Instructions
 To set up the project on your local machine, follow these steps:

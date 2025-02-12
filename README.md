@@ -40,10 +40,14 @@ cd <project-folder>
    git fetch --all
    ```
 
-3.**Switch to the Deployment/Prod branch:**
+3.**Switch to the Deployment/Prod or main branch:**
   ```bash
   git checkout Deployment/Prod
   ```
+or
+```bash
+git checkout main
+```
 
 4.**Install dependencies:** Ensure you are using **Node.js v18.16.0** and **npm v9.5.1** (use nvm or a similar version manager if needed).
   ```bash

@@ -1,9 +1,9 @@
-import styles from "./../css/ProductCard.module.css";
+import styles from "./../../css/ProductCard.module.css";
 import { useDispatch } from 'react-redux';
-import { addItem, removeItem } from '../features/basket/basketSlice';
+import { addItem, removeItem } from '../../features/basket/basketSlice';
 import { isEmpty, isNull } from "lodash";
-import { AddToBasketButtonConditionText, InfoNotAvailableText, OperationTypeEnum, RemoveItemFromBasketButtonConditionText } from "../utils/AppConstant";
-import { AppUtils } from "../utils/AppUtils";
+import { AddToBasketButtonConditionText, InfoNotAvailableText, OperationTypeEnum, RemoveItemFromBasketButtonConditionText } from "../../utils/AppConstant";
+import { AppUtils } from "../../utils/AppUtils";
 
 interface BasketItem {
   id: string;

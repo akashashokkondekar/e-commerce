@@ -1,12 +1,12 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { store } from './../app/store';
-import MiniBasket from './MiniBasket';
+import { store } from './../../app/store';
+import MiniBasket from './../minibasket/MiniBasket';
 import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it } from 'vitest';
-import { InitialReduxStateValues, TotalPriceText, YourBasketText } from '../utils/AppConstant';
-import { addItem, clearBasket } from '../features/basket/basketSlice';
+import { InitialReduxStateValues, TotalPriceText, YourBasketText } from '../../utils/AppConstant';
+import { addItem, clearBasket } from '../../features/basket/basketSlice';
 
 describe('MiniBasket Component - Unit Test cases', () => {
   it('Check if it iss correctly rendering multiple values or not', () => {

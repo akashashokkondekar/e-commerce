@@ -1,4 +1,4 @@
-import styles from "./../css/Confetti.module.css";
+import styles from "./../../css/Confetti.module.css";
 
 const Confetti: React.FC = () => {
   

@@ -1,17 +1,17 @@
 import React, { Suspense } from 'react';
-const ProductCard = React.lazy(() => import("../components/ProductCard"));
+const ProductCard = React.lazy(() => import("../components/product/ProductCard"));
 import styles from "./../css/Product.module.css";
 import { useQuery, gql } from "@apollo/client";
-import NavBar from "../components/NavBar";
+import NavBar from "../components/navbar/NavBar";
 import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';
 import { isEmpty, isNull } from "lodash";
-import ProductCardSkeleton from "../components/ProductCardSkeleton";
+import ProductCardSkeleton from "../components/product/ProductCardSkeleton";
 import { AutoCloseNotificationDuration, ConfettiEffectTimeOutValue, NewestNotificationOnTop, NotificationPosition, NotificationTheme, OperationTypeEnum, ProductAddedIntoBasketText, ProductRemovedFromBasketText, ToastTypeEnum } from "../utils/AppConstant";
-import Confetti from "../components/Confetti";
+import Confetti from "../components/other/Confetti";
 import $ from "jquery";
 import { useEffect } from "react";
-import BannerSlider from "../components/BannerSlider";
+import BannerSlider from "../components/other/BannerSlider";
 import { ToastContainer, toast } from 'react-toastify';
 
 let timeOutInstance: any = null;

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import MiniBasket from './MiniBasket';
+import MiniBasket from '../minibasket/MiniBasket';
 import { ShoppingCart } from 'lucide-react';
-import styles from './../css/NavBar.module.css';
+import styles from './../../css/NavBar.module.css';
 
-import { WebsiteNameText, OptionOneText, OptionTwoText, OptionThreeText } from '../utils/AppConstant';
+import { WebsiteNameText, OptionOneText, OptionThreeText } from '../../utils/AppConstant';
 
 interface NavBarProps {
   basketItems: Array<any>;
@@ -12,8 +12,6 @@ interface NavBarProps {
 
 const NavBar: React.FC<NavBarProps> = ({ basketItems }) => {
   const [isBasketOpen, setBasketOpen] = useState<boolean>(false);
-
-  console.log(JSON.stringify(basketItems));
 
   return (
     <nav className={styles.navbar}>

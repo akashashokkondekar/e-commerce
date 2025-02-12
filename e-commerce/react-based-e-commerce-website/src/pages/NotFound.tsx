@@ -1,4 +1,4 @@
-import NavBar from '../components/NavBar';
+import NavBar from '../components/navbar/NavBar';
 import styles from './../css/NotFound.module.css';
 import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';

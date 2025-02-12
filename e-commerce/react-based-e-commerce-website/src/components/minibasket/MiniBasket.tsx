@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../app/store';
-import { removeItem, updateQuantity } from '../features/basket/basketSlice';
+import { RootState } from '../../app/store';
+import { removeItem, updateQuantity } from '../../features/basket/basketSlice';
 import { Link } from 'react-router-dom';
-import styles from './../css/MiniBasket.module.css';
-import { BasketEmptyInfoText, CheckoutButtonText, OperationTypeEnum, TotalPriceText, YourBasketText } from '../utils/AppConstant';
+import styles from '../../css/MiniBasket.module.css';
+import { BasketEmptyInfoText, CheckoutButtonText, OperationTypeEnum, TotalPriceText, YourBasketText } from '../../utils/AppConstant';
 import BasketItem from './BasketItem';
 
 interface BasketItem {

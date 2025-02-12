@@ -1,8 +1,8 @@
 import React from 'react';
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
-import "./../index.css";
-import { FifthSlideIntroLine, FirstSlideIntroLine, FourthSlideIntroLine, SecondSlideIntroLine, SixthSlideIntroLine, ThirdSlideIntroLine } from "../utils/AppConstant";
+import "./../../index.css";
+import { FifthSlideIntroLine, FirstSlideIntroLine, FourthSlideIntroLine, SecondSlideIntroLine, SixthSlideIntroLine, ThirdSlideIntroLine } from "../../utils/AppConstant";
 
 const BannerSlider: React.FC = () => {
 

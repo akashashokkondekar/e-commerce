@@ -1,5 +1,5 @@
 import styles from './../css/AboutUs.module.css';
-import NavBar from '../components/NavBar';
+import NavBar from '../components/navbar/NavBar';
 import { AboutUsFirstSectionLabelDesc, AboutUsFirstSectionLabelText, AboutUsSecondSectionLabelDesc, AboutUsSecondSectionLabelText, AboutUsThirdSectionLabelDesc, AboutUsThirdSectionLabelText, OptionThreeText } from '../utils/AppConstant';
 import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';

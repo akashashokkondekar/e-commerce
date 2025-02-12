@@ -1,7 +1,7 @@
 import { RootState } from '../app/store';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './../css/Checkout.module.css';
-import NavBar from '../components/NavBar';
+import NavBar from '../components/navbar/NavBar';
 import { AddressEmptyErrorText, AddressLabelText, AddressPlaceholderText, AutoCloseNotificationDuration, CartEmptyInfoText, EmailAddressEmptyErrorText, EmailAddressPlaceholderText, EmailLabelText, FullNameLabelText, InvalidEmailAddressFoundErrorText, NameEmptyErrorText, NamePlaceholderText, NewestNotificationOnTop, NotificationPosition, NotificationTheme, OrderPlacedSuccessfullyText, PlaceOrderText, ToastTypeEnum, TotalPriceText, YourCartText } from '../utils/AppConstant';
 import { useState } from 'react';
 import { isEmpty, isNull } from 'lodash';

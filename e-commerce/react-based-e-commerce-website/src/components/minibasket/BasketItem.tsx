@@ -1,5 +1,5 @@
-import { OperationTypeEnum } from '../utils/AppConstant';
-import styles from './../css/BasketItem.module.css';
+import { OperationTypeEnum } from '../../utils/AppConstant';
+import styles from './../../css/BasketItem.module.css';
 import { Minus, Plus, X } from 'lucide-react';
 
 interface BasketItem {

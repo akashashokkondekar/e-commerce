@@ -5,10 +5,7 @@ import { ShoppingCart } from 'lucide-react';
 import styles from './../../css/NavBar.module.css';
 
 import { WebsiteNameText, OptionOneText, OptionThreeText } from '../../utils/AppConstant';
-
-interface NavBarProps {
-  basketItems: Array<any>;
-}
+import { NavBarProps } from '../../types/Interface';
 
 const NavBar: React.FC<NavBarProps> = ({ basketItems }) => {
   const [isBasketOpen, setBasketOpen] = useState<boolean>(false);

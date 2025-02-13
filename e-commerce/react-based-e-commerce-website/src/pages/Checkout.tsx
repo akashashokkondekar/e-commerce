@@ -9,27 +9,14 @@ import { toast, ToastContainer } from 'react-toastify';
 import { AppUtils } from '../utils/AppUtils';
 import { clearBasket } from '../features/basket/basketSlice';
 import { useNavigate } from "react-router-dom";
-
-interface BasketItem {
-  id: string;
-  title: string;
-  price: number;
-  quantity: number;
-  currencyCode: string;
-}
-
-interface formFields {
-  name: string;
-  email: string;
-  address: string;
-}
+import { FormFields, BasketItem } from '../types/Interface';
 
 const Checkout: React.FC = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [userDeliveryDetails, setUserDeliveryDetails] = useState<formFields>({
+  const [userDeliveryDetails, setUserDeliveryDetails] = useState<FormFields>({
     name: "",
     email: "",
     address: ""

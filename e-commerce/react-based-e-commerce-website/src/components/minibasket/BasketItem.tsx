@@ -1,20 +1,7 @@
 import { OperationTypeEnum } from '../../utils/AppConstant';
 import styles from './../../css/BasketItem.module.css';
 import { Minus, Plus, X } from 'lucide-react';
-
-interface BasketItem {
-  id: string;
-  title: string;
-  price: number;
-  quantity: number;
-  currencyCode: string;
-}
-
-interface BasketItemProps {
-  item: BasketItem;
-  index: number;
-  performUserClickOperation: any;
-}
+import { BasketItemProps } from '../../types/Interface';
 
 export default function BasketItem({ item, index, performUserClickOperation }: BasketItemProps) {
   

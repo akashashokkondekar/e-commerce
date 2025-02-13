@@ -4,41 +4,7 @@ import { addItem, removeItem } from '../../features/basket/basketSlice';
 import { isEmpty, isNull } from "lodash";
 import { AddToBasketButtonConditionText, InfoNotAvailableText, OperationTypeEnum, RemoveItemFromBasketButtonConditionText } from "../../utils/AppConstant";
 import { AppUtils } from "../../utils/AppUtils";
-
-interface BasketItem {
-  id: string;
-  title: string;
-  price: number;
-  quantity: number;
-  currencyCode: string;
-}
-
-interface EmitValue {
-  operationType: number
-}
-
-interface ProductCardProps {
-  performUserClickAction: any,
-  currProductObj: {
-    id: string;
-    featuredImage: {
-      url: string;
-    };
-    title: string;
-    description: string | null;
-    variants: {
-      edges: {
-        node: {
-          price: {
-            currencyCode: string;
-            amount: string;
-          };
-        };
-      }[];
-    };
-  };
-  alreadyAddedInBasket: boolean;
-}
+import { BasketItem, ProductCardProps, EmitValue } from "../../types/Interface";
 
 export default function ProductCard({ performUserClickAction, currProductObj, alreadyAddedInBasket }: ProductCardProps) {
 

@@ -4,15 +4,8 @@ import { removeItem, updateQuantity } from '../../features/basket/basketSlice';
 import { Link } from 'react-router-dom';
 import styles from '../../css/MiniBasket.module.css';
 import { BasketEmptyInfoText, CheckoutButtonText, OperationTypeEnum, TotalPriceText, YourBasketText } from '../../utils/AppConstant';
-import BasketItem from './BasketItem';
-
-interface BasketItem {
-  id: string;
-  title: string;
-  price: number;
-  quantity: number;
-  currencyCode: string;
-}
+import BasketItemComponent from './BasketItem';
+import { BasketItem } from '../../types/Interface';
 
 const MiniBasket: React.FC = () => {
 
@@ -55,7 +48,7 @@ const MiniBasket: React.FC = () => {
         <p className={styles.empty}>{BasketEmptyInfoText}</p>
       ) : (
         basketItems.map((item, index) => (
-          <BasketItem
+          <BasketItemComponent
             key={item.id}
             item={item}
             index={index}

@@ -13,42 +13,9 @@ import $ from "jquery";
 import { useEffect } from "react";
 import BannerSlider from "../components/other/BannerSlider";
 import { ToastContainer, toast } from 'react-toastify';
+import { ProductListData, EmitValue } from '../types/Interface';
 
 let timeOutInstance: any = null;
-
-interface ProductVariant {
-  edges: {
-    node: {
-      price: {
-        amount: string;
-        currencyCode: string;
-      };
-    };
-  }[];
-}
-
-interface EmitValue {
-  operationType: number
-}
-
-interface ProductNode {
-  id: string;
-  title: string;
-  description: string;
-  featuredImage: {
-    id: string;
-    url: string;
-  };
-  variants: ProductVariant;
-}
-
-interface ProductListData {
-  products: {
-    edges: {
-      node: ProductNode;
-    }[];
-  };
-}
 
 const Get_Product_List = gql`
   {

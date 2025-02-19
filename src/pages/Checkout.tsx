@@ -126,9 +126,9 @@ const Checkout: React.FC = () => {
             basketItems.length === 0 ? (
               <p className={styles.emptyCart}>{CartEmptyInfoText}</p>
             ) : (
-              basketItems.map((item: BasketItem) => (
+              basketItems.map((item: BasketItem, currentIndex: number) => (
                 <div key={item.id} className={styles.cartItem}>
-                  <span className={styles.itemName}>{item.title} x {item.quantity}</span>
+                  <span className={styles.itemName}>{currentIndex + 1}. {item.title} x {item.quantity}</span>
                   <span className={styles.itemPrice}>${(item.price * item.quantity).toFixed(2)}</span>
                 </div>
               ))

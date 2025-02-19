@@ -32,11 +32,12 @@
   border-top: 1px solid #eaeaea;
   padding-top: 12px;
   margin-top: 8px;
-  color: #333;
+  color: #09821d;
+  font-weight: 600;
 }
 
 .checkoutBtn {
-  background-color: #007bffb8;
+  background-color: #d2b199;
   color: white;
   padding: 8px 16px;
   border: none;
@@ -46,7 +47,7 @@
 }
 
 .checkoutBtn:hover {
-  background-color: #007bff;
+  background-color: #d1986f;
 }
 
 .seeMoreBtn {

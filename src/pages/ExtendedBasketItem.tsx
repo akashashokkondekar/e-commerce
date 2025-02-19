@@ -41,10 +41,7 @@ const ExtendedBasketItem: React.FC = () => {
     }
   };
 
-  const totalPrice = basketItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
+  const totalPrice = basketItems.reduce( (acc, item) => acc + item.price * item.quantity, 0);
 
   return (
     <div className={styles.container}>
@@ -63,8 +60,7 @@ const ExtendedBasketItem: React.FC = () => {
 
       <div className={styles.checkoutSection}>
         <div className={styles.total}>
-          {TotalPriceText} {basketItems[0]?.currencyCode}
-          {totalPrice.toFixed(2)}
+          {TotalPriceText} {basketItems[0]?.currencyCode}{totalPrice.toFixed(2)}
         </div>
         <Link to="/checkout">
           <button className={styles.checkoutButton}>{CheckoutButtonText}</button>

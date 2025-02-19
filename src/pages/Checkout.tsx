@@ -2,7 +2,7 @@ import { RootState } from '../app/store';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './../css/Checkout.module.css';
 import NavBar from '../components/navbar/NavBar';
-import { AddressEmptyErrorText, AddressLabelText, AddressPlaceholderText, AutoCloseNotificationDuration, CartEmptyInfoText, EmailAddressEmptyErrorText, EmailAddressPlaceholderText, EmailLabelText, FullNameLabelText, InvalidEmailAddressFoundErrorText, NameEmptyErrorText, NamePlaceholderText, NewestNotificationOnTop, NotificationPosition, NotificationTheme, OrderPlacedSuccessfullyText, PlaceOrderText, ToastTypeEnum, TotalPriceText, YourCartText } from '../utils/AppConstant';
+import { AddressEmptyErrorText, AddressLabelText, AddressPlaceholderText, AutoCloseNotificationDuration, CartEmptyInfoText, CheckoutButtonText, EmailAddressEmptyErrorText, EmailAddressPlaceholderText, EmailLabelText, FullNameLabelText, InvalidEmailAddressFoundErrorText, NameEmptyErrorText, NamePlaceholderText, NewestNotificationOnTop, NotificationPosition, NotificationTheme, OrderPlacedSuccessfullyText, PlaceOrderText, ToastTypeEnum, TotalPriceText, YourCartText } from '../utils/AppConstant';
 import { useState } from 'react';
 import { isEmpty, isNull } from 'lodash';
 import { toast, ToastContainer } from 'react-toastify';
@@ -105,15 +105,15 @@ const Checkout: React.FC = () => {
 
       <div className={styles.checkoutContainer}>
         <div className={styles.formSection}>
-          <h1 className={styles.header}>Checkout</h1>
+          <h1 className={styles.header}>{CheckoutButtonText}</h1>
           <div className={styles.form}>
             <label htmlFor={FullNameLabelText} className={styles.label}>{FullNameLabelText}
               <input type="text" value={userDeliveryDetails.name} disabled={basketItems.length === 0} onChange={e => setUserDeliveryDetails({ ...userDeliveryDetails, name: e.target.value })} className={styles.input} placeholder={NamePlaceholderText} />
             </label>
-            <label htmlFor={EmailLabelText} className={styles.label}>
+            <label htmlFor={EmailLabelText} className={styles.label}>{EmailLabelText}
               <input type="email" value={userDeliveryDetails.email} disabled={basketItems.length === 0} onChange={e => setUserDeliveryDetails({ ...userDeliveryDetails, email: e.target.value })} className={styles.input} placeholder={EmailAddressPlaceholderText} />
             </label>
-            <label htmlFor={AddressLabelText} className={styles.label}>Address
+            <label htmlFor={AddressLabelText} className={styles.label}>{AddressLabelText}
               <textarea value={userDeliveryDetails.address} disabled={basketItems.length === 0} onChange={e => setUserDeliveryDetails({ ...userDeliveryDetails, address: e.target.value })} className={styles.textarea} placeholder={AddressPlaceholderText} />
             </label>
             <button onClick={() => handlePlaceOrderOperation()} disabled={basketItems.length === 0} className={basketItems.length === 0 ? styles.disableSubmitButton : styles.submitButton}>{PlaceOrderText}</button>
@@ -128,7 +128,7 @@ const Checkout: React.FC = () => {
             ) : (
               basketItems.map((item: BasketItem) => (
                 <div key={item.id} className={styles.cartItem}>
-                  <span className={styles.itemName}>{item.title} x{item.quantity}</span>
+                  <span className={styles.itemName}>{item.title} x {item.quantity}</span>
                   <span className={styles.itemPrice}>${(item.price * item.quantity).toFixed(2)}</span>
                 </div>
               ))

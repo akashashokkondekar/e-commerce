@@ -40,9 +40,9 @@ export const EmailAddressEmptyErrorText = "Email address can\'t be empty.";
 export const InvalidEmailAddressFoundErrorText = "Invalid Email address found.";
 export const AddressEmptyErrorText = "Address can\'t be empty.";
 export const OrderPlacedSuccessfullyText = "Your Order placed successfully.";
-export const FullNameLabelText = "Name";
-export const EmailLabelText = "Email";
-export const AddressLabelText = "Delivery Address";
+export const FullNameLabelText = "Name:";
+export const EmailLabelText = "Email:";
+export const AddressLabelText = "Delivery Address:";
 
 // MiniBasket.tsx
 export const YourBasketText = "Your Basket";

@@ -74,7 +74,7 @@
 }
 
 .cartSection {
-  width: 300px;
+  width: 35%;
   background-color: #fff;
   padding: 20px;
   border-radius: 12px;
@@ -115,4 +115,15 @@
 
 .totalPrice {
   color: #007bff;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .checkoutContainer {
+    display: block;
+    padding: 20px;
+  }
+  .cartSection {
+   display: none;
+  }
 }

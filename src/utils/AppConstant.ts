@@ -49,6 +49,8 @@ export const YourBasketText = "Your Basket";
 export const BasketEmptyInfoText = "Your basket is empty.";
 export const CheckoutButtonText = "Checkout";
 export const TotalPriceText = "Total:";
+export const SeeMoreText = "See {count} item(s)...";
+export const MaxVisibleItemViewCount = 3;
 
 // NotFound.tsx
 export const ContentNotFoundText="Opsss...page not found.";

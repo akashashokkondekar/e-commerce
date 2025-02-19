@@ -1,34 +1,60 @@
-
 .item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 0.5rem;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  color:#333;
+  margin-bottom: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.leftSection {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .name {
-  flex: 1;
+  font-size: 14px;
   font-weight: bold;
-  color: #000;
+  margin-bottom: 10px;
 }
 
 .controls {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  color: #000;
+  gap: 8px;
+}
+
+.iconButton {
+  background-color: rgb(232, 232, 232);
+  border: 0.75px solid gray;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .price {
+  font-size: 14px;
   font-weight: bold;
-  color: #000;
+  color: #333;
 }
 
 .removeBtn {
-  background: none;
+  background-color: transparent;
   border: none;
   cursor: pointer;
-  color: #ff4d4f;
+  padding: 4px;
+  color: #d9534f;
+}
+
+.removeBtn:hover {
+  color: #c9302c;
 }

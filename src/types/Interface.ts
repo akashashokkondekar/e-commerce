@@ -10,7 +10,8 @@ export interface ProductVariant {
 }
 
 export interface EmitValue {
-  operationType: number
+  operationType: number,
+  object: any
 }
 
 export interface ProductNode {

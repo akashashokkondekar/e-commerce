@@ -35,21 +35,29 @@
 .addButton {
   margin-top: 0.5rem;
   padding: 0.5rem 1rem;
-  background-color: #007bff;
+  background-color: #d2b199;
   color: white;
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
 }
 
+.addButton:hover {
+  background-color: #d1986f;
+}
+
 .removeItemButton {
   margin-top: 0.5rem;
   padding: 0.5rem 1rem;
-  background-color: maroon;
+  background-color: rgba(128, 0, 0, 0.785);
   color: white;
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
+}
+
+.removeItemButton:hover {
+  background-color: maroon;
 }
 
 .opacity-point-5 {

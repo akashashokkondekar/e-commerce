@@ -49,7 +49,7 @@
 }
 
 .submitButton {
-  background-color: #007bff;
+  background-color: #d2b199;
   color: white;
   padding: 12px;
   border: none;
@@ -59,11 +59,11 @@
 }
 
 .submitButton:hover {
-  background-color: #0056b3;
+  background-color: #d1986f;
 }
 
 .disableSubmitButton {
-  background-color: #007bff;
+  background-color: #d2b199;
   color: white;
   padding: 12px;
   border: none;
@@ -74,7 +74,7 @@
 }
 
 .cartSection {
-  width: 300px;
+  width: 35%;
   background-color: #fff;
   padding: 20px;
   border-radius: 12px;
@@ -98,11 +98,13 @@
 }
 
 .itemName {
-  font-weight: 500;
+  font-size: 0.95rem;
+  color: #19315b;
 }
 
 .itemPrice {
-  color: #555;
+  font-size: 0.95rem;
+  color: #19315b;
 }
 
 .totalSection {
@@ -110,9 +112,20 @@
   justify-content: space-between;
   margin-top: 20px;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 24px;
 }
 
 .totalPrice {
-  color: #007bff;
+  color: #09821d;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .checkoutContainer {
+    display: block;
+    padding: 20px;
+  }
+  .cartSection {
+   display: none;
+  }
 }

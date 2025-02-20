@@ -21,8 +21,10 @@ export const FourthSlideIntroLine = "Find Your Perfect Match with Us.";
 export const FifthSlideIntroLine = "Discover Deals You Can't Resist!";
 export const SixthSlideIntroLine = "Elevate Your Shopping Experience 🌟";
 export const ConfettiEffectTimeOutValue = 3000; // In MS
-export const ProductAddedIntoBasketText = "Product added into the basket.";
-export const ProductRemovedFromBasketText = "Product removed from basket.";
+export const CustomProductNameText = "{product_name}";
+export const DefaultProductNameText = "The Product";
+export const DefaultProductAddedIntoBasketText = "has been added to your basket.";
+export const DefaultProductRemovedFromBasketText = "has been removed from your basket.";
 
 // ProductCard.tsx
 export const AddToBasketButtonConditionText = "Add to Basket";

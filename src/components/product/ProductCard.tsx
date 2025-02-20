@@ -37,7 +37,8 @@ export default function ProductCard({ performUserClickAction, currProductObj, al
   const performPostItemAddOperation = () => {
 
     const objToReturn: EmitValue = {
-      operationType: OperationTypeEnum.Add_Product
+      operationType: OperationTypeEnum.Add_Product,
+      object: currProductObj
     }
     performUserClickAction(objToReturn);
 
@@ -46,7 +47,8 @@ export default function ProductCard({ performUserClickAction, currProductObj, al
   const performPostItemRemoveOperation = () => {
 
     const objToReturn: EmitValue = {
-      operationType: OperationTypeEnum.Remove_Product
+      operationType: OperationTypeEnum.Remove_Product,
+      object: currProductObj
     }
     performUserClickAction(objToReturn);
 

@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';
 import { isEmpty, isNull } from "lodash";
 import ProductCardSkeleton from "../components/product/ProductCardSkeleton";
-import { AutoCloseNotificationDuration, ConfettiEffectTimeOutValue, NewestNotificationOnTop, NotificationPosition, NotificationTheme, OperationTypeEnum, ProductAddedIntoBasketText, ProductRemovedFromBasketText, ToastTypeEnum } from "../utils/AppConstant";
+import { AutoCloseNotificationDuration, ConfettiEffectTimeOutValue, NewestNotificationOnTop, NotificationPosition, NotificationTheme, OperationTypeEnum, DefaultProductAddedIntoBasketText, DefaultProductRemovedFromBasketText, ToastTypeEnum, CustomProductNameText, DefaultProductNameText } from "../utils/AppConstant";
 import Confetti from "../components/other/Confetti";
 import $ from "jquery";
 import { useEffect } from "react";
@@ -56,16 +56,17 @@ const Product: React.FC = () => {
 
   const handleUserClicks = (obj: EmitValue) => {
 
+    let productNameText = CustomProductNameText.replace("{product_name}", (!isNull(obj.object) && !isEmpty(obj.object)) ? obj.object.title : DefaultProductNameText);
     switch (obj.operationType) {
 
       case OperationTypeEnum.Add_Product:
 
         handleConfettiAnimation();
-        showToastMsgToUser(ProductAddedIntoBasketText, ToastTypeEnum.Success);
+        showToastMsgToUser(`${productNameText} ${DefaultProductAddedIntoBasketText}`, ToastTypeEnum.Success);
         break;
 
       case OperationTypeEnum.Remove_Product:
-        showToastMsgToUser(ProductRemovedFromBasketText, ToastTypeEnum.Warning);
+        showToastMsgToUser(`${productNameText} ${DefaultProductRemovedFromBasketText}`, ToastTypeEnum.Warning);
         break;
 
     }

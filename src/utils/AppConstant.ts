@@ -64,13 +64,23 @@ export const AutoCloseNotificationDuration = 2000; // In Ms
 export const NotificationPosition = "bottom-right";
 export const NotificationTheme = "dark";
 
+// FiterBar.tsx
+export const SortByLabelText = "Sort By:";
+export const RefreshLabelText = "Refresh";
+export const DefaultFilterKeyOptionText = "Popularity";
+export const ByNameFilterKeyOptionText = "By Name";
+export const PriceLowToHighFilterKeyOptionText = "Price: Low to High";
+export const PriceHighToLowFilterKeyOptionText = "Price: High to Low";
+
 // Enum
 export enum OperationTypeEnum {
   None = 0,
   Add_Product = 1,
   Remove_Product = 2,
   Increase_Product_Quantity = 3,
-  Decrease_Product_Quantity = 4
+  Decrease_Product_Quantity = 4,
+  Filter_Records = 5,
+  Refresh_Records = 6
 }
 
 export enum ToastTypeEnum {
@@ -78,6 +88,13 @@ export enum ToastTypeEnum {
   Error = 1,
   Success = 2,
   Warning = 3
+}
+
+export enum FilterSortEnum {
+  Default = 0, 
+  Name = 1,
+  Price_Low_To_High = 2,
+  Price_High_To_Low = 3
 }
 
 // Testcase values

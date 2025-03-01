@@ -19,6 +19,11 @@
   text-decoration: none;
 }
 
+.navLinks a:hover {
+  color: #d2b199;
+  text-decoration: none;
+}
+
 .basketIcon {
   cursor: pointer;
   position: relative;
@@ -35,6 +40,10 @@
   padding: 1rem;
   width: 300px;
   z-index: 100;
+}
+
+.basketIcon:hover {
+  color: #d2b199;
 }
 
 .basketIconImg {

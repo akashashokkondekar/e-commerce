@@ -33,14 +33,6 @@ export interface ProductListData {
   };
 }
 
-export interface BasketItem {
-  id: string;
-  title: string;
-  price: number;
-  quantity: number;
-  currencyCode: string;
-}
-
 export interface FormFields {
   name: string;
   email: string;
@@ -58,37 +50,26 @@ export interface BasketItem {
 
 export interface ProductCardProps {
   performUserClickAction: any,
-  currProductObj: {
-    id: string;
-    featuredImage: {
-      url: string;
-    };
-    title: string;
-    description: string | null;
-    variants: {
-      edges: {
-        node: {
-          price: {
-            currencyCode: string;
-            amount: string;
-          };
-        };
-      }[];
-    };
-  };
+  currProductObj: ProductObj,
   alreadyAddedInBasket: boolean;
+}
+
+export interface ProductObj {
+  id: string,
+  title: string,
+  description: string | null,
+  price: number,
+  imageUrl: string,
+  currencyCode: string
+}
+
+export interface FilterProps {
+  performUserClickAction: any,
+  loading: boolean
 }
 
 export interface NavBarProps {
   basketItems: Array<any>;
-}
-
-export interface BasketItem {
-  id: string;
-  title: string;
-  price: number;
-  quantity: number;
-  currencyCode: string;
 }
 
 export interface BasketItemProps {

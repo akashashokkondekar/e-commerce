@@ -1,25 +1,28 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useState } from 'react';
 const ProductCard = React.lazy(() => import("../components/product/ProductCard"));
 import styles from "./../css/Product.module.css";
 import { useQuery, gql } from "@apollo/client";
 import NavBar from "../components/navbar/NavBar";
 import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';
-import { isEmpty, isNull } from "lodash";
+import { isEmpty, isNull, orderBy } from "lodash";
 import ProductCardSkeleton from "../components/product/ProductCardSkeleton";
-import { AutoCloseNotificationDuration, ConfettiEffectTimeOutValue, NewestNotificationOnTop, NotificationPosition, NotificationTheme, OperationTypeEnum, DefaultProductAddedIntoBasketText, DefaultProductRemovedFromBasketText, ToastTypeEnum, CustomProductNameText, DefaultProductNameText } from "../utils/AppConstant";
+import { AutoCloseNotificationDuration, ConfettiEffectTimeOutValue, NewestNotificationOnTop, NotificationPosition, NotificationTheme, OperationTypeEnum, DefaultProductAddedIntoBasketText, DefaultProductRemovedFromBasketText, ToastTypeEnum, CustomProductNameText, DefaultProductNameText, FilterSortEnum } from "../utils/AppConstant";
 import Confetti from "../components/other/Confetti";
 import $ from "jquery";
 import { useEffect } from "react";
 import BannerSlider from "../components/other/BannerSlider";
 import { ToastContainer, toast } from 'react-toastify';
-import { ProductListData, EmitValue } from '../types/Interface';
+import { ProductListData, EmitValue, ProductObj } from '../types/Interface';
+import { NetworkStatus } from '@apollo/client';
+import { AppUtils } from '../utils/AppUtils';
+import FilterBar from '../components/other/FilterBar';
 
 let timeOutInstance: any = null;
 
 const Get_Product_List = gql`
   {
-    products(first: 20) {
+    products(first: 50) {
       edges {
         node {
           id
@@ -29,7 +32,7 @@ const Get_Product_List = gql`
             id
             url
           }
-          variants(first: 1) {
+          variants(first: 3) {
             edges {
               node {
                 price {
@@ -47,17 +50,53 @@ const Get_Product_List = gql`
 
 const Product: React.FC = () => {
 
-  const { loading, error, data } = useQuery<ProductListData>(Get_Product_List);
+  const { loading, error, data, refetch, networkStatus } = useQuery<ProductListData>(Get_Product_List, {
+    fetchPolicy: 'network-only', // Used for first execution
+    nextFetchPolicy: 'cache-first', // Used for subsequent executions
+    pollInterval: 0,
+    notifyOnNetworkStatusChange: true
+  });
+
+  useEffect(() => {
+    setSortedProducts(getDefaultStructuredProductList());
+  }, [data]);
+
+  const [productList, setSortedProducts] = useState<ProductObj[]>([]);
   const basketItems = useSelector((state: RootState) => state.basket.items);
 
   useEffect(() => {
     $("#confetti").hide();
   }, []);
 
-  const handleUserClicks = (obj: EmitValue) => {
+  const getDefaultStructuredProductList = () => {
 
-    let productNameText = CustomProductNameText.replace("{product_name}", (!isNull(obj.object) && !isEmpty(obj.object)) ? obj.object.title : DefaultProductNameText);
-    switch (obj.operationType) {
+    var defaultStructuredProductList: ProductObj[] = [];
+    if (data?.products) {
+
+      defaultStructuredProductList = data?.products.edges.map(edge => {
+
+        const node = edge.node;
+        const price = parseFloat(node.variants.edges[0].node.price.amount);
+        const currencyCode = node.variants.edges[0].node.price.currencyCode;
+
+        return {
+          id: node.id,
+          title: node.title,
+          description: node.description,
+          price: price,
+          imageUrl: node.featuredImage?.url,
+          currencyCode: AppUtils.GetCurrencySymbolUsingCode(currencyCode)
+        };
+      });
+
+    }
+    return defaultStructuredProductList;
+  }
+
+  const handleUserClicks = (emittedObj: EmitValue) => {
+
+    let productNameText = CustomProductNameText.replace("{product_name}", (!isNull(emittedObj.object) && !isEmpty(emittedObj.object)) ? emittedObj.object.title : DefaultProductNameText);
+    switch (emittedObj.operationType) {
 
       case OperationTypeEnum.Add_Product:
 
@@ -66,7 +105,35 @@ const Product: React.FC = () => {
         break;
 
       case OperationTypeEnum.Remove_Product:
+
         showToastMsgToUser(`${productNameText} ${DefaultProductRemovedFromBasketText}`, ToastTypeEnum.Warning);
+        break;
+
+      case OperationTypeEnum.Refresh_Records:
+        refetch();
+        break;
+
+      case OperationTypeEnum.Filter_Records:
+
+        var filteredRecords: ProductObj[] = [];
+        switch (emittedObj.object) {
+
+          case FilterSortEnum.Default:
+            filteredRecords = getDefaultStructuredProductList();;
+            break;
+
+          case FilterSortEnum.Price_High_To_Low:
+            filteredRecords = orderBy(productList, 'price', ['desc']);
+            break;
+          case FilterSortEnum.Price_Low_To_High:
+            filteredRecords = orderBy(productList, 'price', ['asc']);
+            break;
+
+          case FilterSortEnum.Name:
+            filteredRecords = orderBy(productList, 'title', ['asc']);
+            break;
+        }
+        setSortedProducts(filteredRecords);
         break;
 
     }
@@ -108,13 +175,19 @@ const Product: React.FC = () => {
 
   }
 
+  if (networkStatus === NetworkStatus.error) { showToastMsgToUser("Internet NOOO", ToastTypeEnum.Error) };
   if (error) { showToastMsgToUser(error.message, ToastTypeEnum.Error) };
 
+
   return (
+
     <div>
       <Confetti />
       <NavBar basketItems={basketItems} />
       <BannerSlider />
+      <FilterBar
+        loading={loading}
+        performUserClickAction={handleUserClicks} />
       <ToastContainer
         draggable
         closeOnClick
@@ -122,6 +195,7 @@ const Product: React.FC = () => {
         autoClose={AutoCloseNotificationDuration}
         theme={NotificationTheme}
         position={NotificationPosition} />
+
       {
         (loading) && (
           <div className={styles.productGrid}>
@@ -138,15 +212,15 @@ const Product: React.FC = () => {
         (!loading) && (
           <div className={styles.productGrid}>
             {
-              data?.products.edges.map((currProductObj) => (
-                <Suspense fallback={<ProductCardSkeleton />} key={currProductObj.node.id}>
+              productList?.map((currProductObj) => (
+                <Suspense fallback={<ProductCardSkeleton />} key={currProductObj.id}>
                   <ProductCard
                     performUserClickAction={handleUserClicks}
-                    key={currProductObj.node.id}
-                    currProductObj={currProductObj.node}
+                    key={currProductObj.id}
+                    currProductObj={currProductObj}
                     alreadyAddedInBasket={
                       !isNull(basketItems) && !isEmpty(basketItems) &&
-                      basketItems.some((currObj) => currObj.id === currProductObj.node.id)
+                      basketItems.some((currObj) => currObj.id === currProductObj.id)
                     }
                   />
                 </Suspense>

@@ -14,9 +14,9 @@ import { useEffect } from "react";
 import BannerSlider from "../components/other/BannerSlider";
 import { ToastContainer, toast } from 'react-toastify';
 import { ProductListData, EmitValue, ProductObj } from '../types/Interface';
-import FilterBar from '../components/other/Filterbar';
 import { NetworkStatus } from '@apollo/client';
 import { AppUtils } from '../utils/AppUtils';
+import FilterBar from '../components/other/FilterBar';
 
 let timeOutInstance: any = null;
 

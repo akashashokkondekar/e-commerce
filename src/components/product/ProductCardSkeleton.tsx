@@ -8,7 +8,7 @@ const ProductCardSkeleton: React.FC = () => {
 
     <div className={styles.productGrid}>
       <SkeletonTheme baseColor="#e0e0e0">
-        <Skeleton height={200} width={"100%"} duration={1.5} />
+        <Skeleton height={300} width={"100%"} duration={1.5} />
         <Skeleton height={"1.25rem"} width={"60%"} duration={1.5} />
         <Skeleton height={"0.75rem"} width={"100%"} count={5} duration={1.5} />
         <Skeleton height={"1.25rem"} width={"30%"} duration={1.5} />

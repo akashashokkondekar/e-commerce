@@ -27,7 +27,7 @@ export default function ProductCard({ performUserClickAction, currProductObj, al
         break;
 
       case OperationTypeEnum.Remove_Product:
-      
+
         dispatch(removeItem(currProductObj.id));
         performPostItemRemoveOperation();
         break;
@@ -57,19 +57,22 @@ export default function ProductCard({ performUserClickAction, currProductObj, al
 
   return (
 
-    <div key={currProductObj.id} className={styles.productCard}>
+    <div key={currProductObj.id} className={`card`}>
 
-      <img src={currProductObj.imageUrl} alt={currProductObj.title} className={styles.productImage} loading="lazy" />
-      <h3 className={styles.productTitle}>{currProductObj.title}</h3>
-      <p className={styles.productDescription}>{(!isNull(currProductObj.description) && !isEmpty(currProductObj.description)) ? currProductObj.description : InfoNotAvailableText}</p>
-      <p className={styles.productPrice}>{currProductObj.currencyCode}{currProductObj.price.toFixed(2)}</p>
-      <button
-        onClick={() => performUserClickOperation(alreadyAddedInBasket ? OperationTypeEnum.Remove_Product : OperationTypeEnum.Add_Product)}
-        className={alreadyAddedInBasket ? styles.removeItemButton : styles.addButton}
-      >
-        {alreadyAddedInBasket ? RemoveItemFromBasketButtonConditionText : AddToBasketButtonConditionText}
-      </button>
-
+      <img className={`card-img-top ${styles.productImage}`} src={currProductObj.imageUrl} alt={currProductObj.title} loading="lazy" />
+      <div className="card-body text-center">
+        <h5 className="card-title">{currProductObj.title}</h5>
+        <p className="card-text">{(!isNull(currProductObj.description) && !isEmpty(currProductObj.description)) ? currProductObj.description : InfoNotAvailableText}</p>
+      </div>
+      <div className={`card-footer bg-transparent text-center ${styles.border0px}`}>
+        <p className={styles.productPrice}>{currProductObj.currencyCode}{currProductObj.price.toFixed(2)}</p>
+        <button
+          onClick={() => performUserClickOperation(alreadyAddedInBasket ? OperationTypeEnum.Remove_Product : OperationTypeEnum.Add_Product)}
+          className={alreadyAddedInBasket ? styles.removeItemButton : styles.addButton}
+        >
+          {alreadyAddedInBasket ? RemoveItemFromBasketButtonConditionText : AddToBasketButtonConditionText}
+        </button></div>
     </div>
+
   );
 }

@@ -10,7 +10,7 @@ export const AboutUsFirstSectionLabelDesc = "Lorem Ipsum is simply dummy text of
 export const AboutUsSecondSectionLabelText = "Our Mission";
 export const AboutUsSecondSectionLabelDesc = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.";
 export const AboutUsThirdSectionLabelText = "Contact Us";
-export const AboutUsThirdSectionLabelDesc = "Have questions or feedback? We would love to hear from you! Reach out to us at <a href=\"mailto:akashkondekar00700@gmail.com\" style=\"color:#1e90ff; text-decoration: underline;\">akashkondekar00700@gmail.com</a>.";
+export const AboutUsThirdSectionLabelDesc = "Have questions or feedback? We would love to hear from you! Reach out to us at <a href=\"mailto:akashkondekar00700@gmail.com\" style=\"color:#1e90ff !important; text-decoration: underline;\">akashkondekar00700@gmail.com</a>.";
 
 // Product.tsx
 export const InfoNotAvailableText = "Information Not Available.";

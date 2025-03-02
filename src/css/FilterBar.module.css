@@ -63,6 +63,11 @@
 
   .sortContainer {
     width: 100%;
+    justify-content:center;
+  }
+
+  .refreshContainer {
+    justify-content: center;
   }
 
   .sortDropdown {

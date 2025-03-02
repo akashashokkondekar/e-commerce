@@ -15,7 +15,7 @@ const NavBar: React.FC<NavBarProps> = ({ basketItems }) => {
       <div className={styles.logo}>
         <Link to="/">{WebsiteNameText}</Link>
       </div>
-      <ul className={styles.navLinks}>
+      <ul className={`${styles.navLinks} ${styles.marginBottom0px} ${styles.paddingLeft0px}`}>
         <li><Link to="/">{OptionOneText}</Link></li>
         {/* <li><Link to="/products">{OptionTwoText}</Link></li> */}
         <li><Link to="/aboutus">{OptionThreeText}</Link></li>

@@ -11,6 +11,7 @@ const AboutUsPage = React.lazy(() => import("./pages/AboutUs"));
 const CheckoutPage = React.lazy(() => import("./pages/Checkout"));
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ExtendedBasketItem from './pages/ExtendedBasketItem';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const router = createBrowserRouter([
   {

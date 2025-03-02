@@ -2,18 +2,24 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
   background-color: #282c34;
   color: white;
   position: relative;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
 }
 
 .navLinks {
   display: flex;
   gap: 1rem;
   list-style: none;
+  color: white;
+  text-decoration: none;
 }
-
 .navLinks a {
   color: white;
   text-decoration: none;
@@ -22,6 +28,14 @@
 .navLinks a:hover {
   color: #d2b199;
   text-decoration: none;
+}
+
+.marginBottom0px {
+  margin-bottom: 0px;
+}
+
+.paddingLeft0px {
+  padding-left: 0px;
 }
 
 .basketIcon {
